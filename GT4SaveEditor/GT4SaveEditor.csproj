@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PDTools.SaveFile\PDTools.SaveFile.csproj" />
+    <ProjectReference Include="..\PDTools\PDTools.SaveFile\PDTools.SaveFile.csproj" />
   </ItemGroup>
 
 </Project>
