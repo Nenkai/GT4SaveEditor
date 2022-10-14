@@ -72,5 +72,10 @@ namespace GT4SaveEditor
         {
             Save.GarageFile.Money = ulong.Parse(label_Money.Text);
         }
+
+        private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

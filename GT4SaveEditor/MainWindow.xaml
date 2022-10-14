@@ -15,7 +15,7 @@
                     <MenuItem Header="_Load" Name="MenuItem_Load" Click="MenuItem_Load_Click"/>
                     <MenuItem Header="_Save" Name="MenuItem_Save" Click="MenuItem_Save_Click"/>
                     <Separator/>
-                    <MenuItem Header="_Exit"/>
+                    <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
             </Menu>
             <TabControl DockPanel.Dock="Bottom">
