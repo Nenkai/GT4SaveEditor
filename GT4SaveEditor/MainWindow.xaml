@@ -6,8 +6,9 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:GT4SaveEditor"
         mc:Ignorable="d"
-        Title="GT4 Save Editor" Height="450" Width="800"
-        DataContext="{x:Static local:MainWindow.Save}">
+        Title="GT4 Save Editor" Height="600" Width="900"
+        DataContext="{x:Static local:MainWindow.Save}"
+        Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="20">
@@ -18,15 +19,72 @@
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
             </Menu>
-            <TabControl DockPanel.Dock="Bottom">
+            <TabControl Name="MainTabControl" DockPanel.Dock="Bottom" IsEnabled="False">
                 <TabItem Header="Profile">
-                    <Grid>
-                        <Label VerticalAlignment="Top" Margin="10,10,700,0">UserName</Label>
-                        <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding GameData.Profile.UserName}"/>
+                    <TabControl>
+                        <TabItem Header="Main">
+                            <Grid>
+                                <Label VerticalAlignment="Top" Margin="10,10,700,0">UserName</Label>
+                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding GameData.Profile.UserName}"/>
 
-                        <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
-                        <TextBox Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding GarageFile.Money}" TextChanged="label_Money_TextChanged"/>
-                    </Grid>
+                                <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
+                                <TextBox Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding GarageFile.Money}" TextChanged="label_Money_TextChanged"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Used Car Dealership">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="80's" />
+                                    <Label Grid.Column="1" Content="Early 90's"/>
+                                    <Label Grid.Column="2" Content="Late 90's"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ListBox Grid.Column="0" Name="lb_UCD_80">
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Name="mi_UCD80_Toggle" Header="Toggle Available/Soldout" Click="mi_UCD80_Toggle_Click"/>
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
+                                    </ListBox>
+                                    <ListBox Grid.Column="1" Name="lb_UCD_Early90">
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Name="mi_UCDEarly90_Toggle" Header="Toggle Available/Soldout" Click="mi_UCDEarly90_Toggle_Click"/>
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
+                                    </ListBox>
+                                    <ListBox Grid.Column="2" Name="lb_UCD_Late90">
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Name="mi_UCDLate90_Toggle" Header="Toggle Available/Soldout" Click="mi_UCDLate90_Toggle_Click"/>
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
+                                    </ListBox>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Label HorizontalContentAlignment="Right" Content="Current Week:" Margin="0,6,85,4" HorizontalAlignment="Right" Width="111"/>
+                                    <xctk:IntegerUpDown Name="UpDown_UCDWeek" Minimum="0" Maximum="99" Value="{Binding Path=GameData.Profile.UsedCar.Week}" Margin="0,9,10,6" HorizontalAlignment="Right" Width="68" ValueChanged="UpDown_UCDWeek_ValueChanged"  />
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    
                 </TabItem>
                 <TabItem Header="Option">
                     <Grid>
