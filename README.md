@@ -12,6 +12,7 @@ Allows editing game options and money at the moment.
 - [x] Unpacking/Repacking
 - [x] Editing Money
 - [x] Managing the Used Car Dealership (changing current week, toggling/untoggling available cars)
+- [x] Editing Game Settings
 - [ ] Garage Management
 - [ ] Event Progress Management
 - [ ] Stats Editing
