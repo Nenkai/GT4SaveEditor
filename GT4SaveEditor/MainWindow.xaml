@@ -7,28 +7,39 @@
         xmlns:local="clr-namespace:GT4SaveEditor"
         mc:Ignorable="d"
         Title="GT4 Save Editor" Height="600" Width="900"
-        DataContext="{x:Static local:MainWindow.Save}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=Save}"
         Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="20">
                 <MenuItem Header="File">
                     <MenuItem Header="_Load" Name="MenuItem_Load" Click="MenuItem_Load_Click"/>
-                    <MenuItem Header="_Save" Name="MenuItem_Save" Click="MenuItem_Save_Click"/>
+                    <MenuItem Header="_Save" Name="MenuItem_Save" IsEnabled="False" Click="MenuItem_Save_Click"/>
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
             </Menu>
             <TabControl Name="MainTabControl" DockPanel.Dock="Bottom" IsEnabled="False">
                 <TabItem Header="Profile">
-                    <TabControl>
+                    <TabControl Name="tabControl_Profile" SelectionChanged="tabControl_Profile_SelectionChanged">
                         <TabItem Header="Main">
                             <Grid>
                                 <Label VerticalAlignment="Top" Margin="10,10,700,0">UserName</Label>
-                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding GameData.Profile.UserName}"/>
+                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
                                 <TextBox Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding GarageFile.Money}" TextChanged="label_Money_TextChanged"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Garage">
+                            <Grid>
+                                <GroupBox Header="Current Car" Margin="10,10,504,350">
+                                    <Grid>
+                                        <Label Name="lb_CurrentCarName" Content="N/A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="10,10,10,67"/>
+                                        <Button Name="btn_EditCurrentCar" Margin="10,63,10,10" Content="Edit Car" Click="btn_EditCurrentCar_Click"/>
+                                    </Grid>
+
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Used Car Dealership">
@@ -84,7 +95,7 @@
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    
+
                 </TabItem>
                 <TabItem Header="Option">
                     <Grid>

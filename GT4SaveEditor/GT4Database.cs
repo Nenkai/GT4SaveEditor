@@ -40,6 +40,14 @@ namespace GT4SaveEditor
             return res.GetString(0);
         }
 
+        public string GetCarNameByCode(int code)
+        {
+            var res = ExecuteQuery($"SELECT Name FROM CAR_NAME_american WHERE RowId = \"{code}\"");
+            res.Read();
+
+            return res.GetString(0);
+        }
+
         public SQLiteDataReader ExecuteQuery(string query)
         {
             SQLiteCommand cmd = _sConn.CreateCommand();

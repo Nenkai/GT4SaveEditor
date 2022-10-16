@@ -30,9 +30,14 @@ namespace GT4SaveEditor
         private UsedCarList _usedCarList { get; set; } = new();
         private GT4Database _gt4Database { get; set; }
 
+        private bool[] _profileTabNeedPopulate = new bool[3];
+
         public MainWindow()
         {
             InitializeComponent();
+
+            for (var i = 0; i < _profileTabNeedPopulate.Length; i++)
+                _profileTabNeedPopulate[i] = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -53,8 +58,6 @@ namespace GT4SaveEditor
                 {
                     Save = GT4Save.Load(vistaOpenFileDialog.SelectedPath);
                     OnSaveLoaded();
-
-                    Initialize();
                 }
                 catch (Exception ex)
                 {
@@ -75,6 +78,9 @@ namespace GT4SaveEditor
                 _usedCarList.LoadList("US");
             else if (Save.GameType == GT4GameType.GT4_KR)
                 _usedCarList.LoadList("KR");
+
+            MainTabControl.IsEnabled = true;
+            MenuItem_Save.IsEnabled = true;
         }
 
         private void MenuItem_Save_Click(object sender, RoutedEventArgs e)
@@ -95,14 +101,6 @@ namespace GT4SaveEditor
             }
         }
 
-        private void Initialize()
-        {
-            // Init UCD
-            InitUsedCarListing();
-
-            MainTabControl.IsEnabled = true;
-        }
-
         private void label_Money_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Fix this atrocity later
@@ -112,6 +110,27 @@ namespace GT4SaveEditor
         private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void tabControl_Profile_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl tabControl)
+            {
+                if (_profileTabNeedPopulate[tabControl.SelectedIndex])
+                {
+                    if (tabControl.SelectedIndex == 1) // Garage
+                    {
+                        InitGarageListing();
+                    }
+                    else if (tabControl.SelectedIndex == 2) // Used Car
+                    {
+                        // Init UCD
+                        InitUsedCarListing();
+                    }
+
+                    _profileTabNeedPopulate[tabControl.SelectedIndex] = false;
+                }
+            }
         }
     }
 }
