@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:GT4SaveEditor"
         mc:Ignorable="d"
         Title="GT4 Save Editor" Height="600" Width="900"
-        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=Save}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
@@ -25,22 +25,34 @@
                         <TabItem Header="Main">
                             <Grid>
                                 <Label VerticalAlignment="Top" Margin="10,10,700,0">UserName</Label>
-                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
-                                <TextBox Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding GarageFile.Money}" TextChanged="label_Money_TextChanged"/>
+                                <xctk:ULongUpDown Increment="10000" Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding Save.GarageFile.Money}"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Garage">
                             <Grid>
-                                <GroupBox Header="Current Car" Margin="10,10,504,350">
+                                <GroupBox Header="Current Car" Margin="10,10,0,0" HorizontalAlignment="Left" Width="374" Height="148" VerticalAlignment="Top">
                                     <Grid>
                                         <Label Name="lb_CurrentCarName" Content="N/A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="10,10,10,67"/>
                                         <Button Name="btn_EditCurrentCar" Margin="10,63,10,10" Content="Edit Car" Click="btn_EditCurrentCar_Click"/>
                                     </Grid>
-
                                 </GroupBox>
+
+                                <GroupBox Name="gb_Garage" Header="Garage" Margin="389,10,10,10">
+                                    <ListView Name="lv_GarageCars" ItemsSource="{Binding GarageCars}">
+                                        <ListView.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Name="mi_Garage_SetAsCurrentCar" Header="Set As Current Car" Click="mi_Garage_SetAsCurrentCar_Click"/>
+                                                <MenuItem Name="mi_Garage_EditCar" Header="Edit Car" Click="mi_Garage_EditCar_Click"/>
+                                            </ContextMenu>
+                                        </ListView.ContextMenu>
+                                    </ListView>
+                                </GroupBox>
+
                             </Grid>
+
                         </TabItem>
                         <TabItem Header="Used Car Dealership">
                             <Grid>
@@ -90,7 +102,7 @@
                                 </Grid>
                                 <Grid Grid.Row="2">
                                     <Label HorizontalContentAlignment="Right" Content="Current Week:" Margin="0,6,85,4" HorizontalAlignment="Right" Width="111"/>
-                                    <xctk:IntegerUpDown Name="UpDown_UCDWeek" Minimum="0" Maximum="99" Value="{Binding Path=GameData.Profile.UsedCar.Week}" Margin="0,9,10,6" HorizontalAlignment="Right" Width="68" ValueChanged="UpDown_UCDWeek_ValueChanged"  />
+                                    <xctk:IntegerUpDown Name="UpDown_UCDWeek" Minimum="0" Maximum="99" Value="{Binding Path=Save.GameData.Profile.UsedCar.Week}" Margin="0,9,10,6" HorizontalAlignment="Right" Width="68" ValueChanged="UpDown_UCDWeek_ValueChanged"  />
                                 </Grid>
                             </Grid>
                         </TabItem>
@@ -99,7 +111,7 @@
                 </TabItem>
                 <TabItem Header="Option">
                     <Grid>
-                        <xctk:PropertyGrid Name="PropertyGrid" SelectedObject="{Binding Path=GameData.Option}">
+                        <xctk:PropertyGrid Name="PropertyGrid" SelectedObject="{Binding Path=Save.GameData.Option}">
                             <xctk:PropertyGrid.Resources>
                                 <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="White" />
                                 <!-- ! -->

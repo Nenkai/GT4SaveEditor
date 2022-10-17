@@ -23,9 +23,14 @@ namespace GT4SaveEditor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public static GT4Save Save { get; set; }
+        private GT4Save _save;
+        public GT4Save Save 
+        {
+            get => _save;
+            set { _save = value; OnPropertyChanged(nameof(Save)); }
+        }
 
         private UsedCarList _usedCarList { get; set; } = new();
         private GT4Database _gt4Database { get; set; }
@@ -66,22 +71,6 @@ namespace GT4SaveEditor
             }
         }
 
-        private void OnSaveLoaded()
-        {
-            this.DataContext = Save;
-
-            if (Save.GameType == GT4GameType.GT4_EU)
-                _usedCarList.LoadList("EU");
-            else if (Save.GameType == GT4GameType.GT4_JP)
-                _usedCarList.LoadList("JP");
-            else if (Save.GameType == GT4GameType.GT4_US)
-                _usedCarList.LoadList("US");
-            else if (Save.GameType == GT4GameType.GT4_KR)
-                _usedCarList.LoadList("KR");
-
-            MainTabControl.IsEnabled = true;
-            MenuItem_Save.IsEnabled = true;
-        }
 
         private void MenuItem_Save_Click(object sender, RoutedEventArgs e)
         {
@@ -132,5 +121,24 @@ namespace GT4SaveEditor
                 }
             }
         }
+
+        private void OnSaveLoaded()
+        {
+            if (Save.GameType == GT4GameType.GT4_EU)
+                _usedCarList.LoadList("EU");
+            else if (Save.GameType == GT4GameType.GT4_JP)
+                _usedCarList.LoadList("JP");
+            else if (Save.GameType == GT4GameType.GT4_US)
+                _usedCarList.LoadList("US");
+            else if (Save.GameType == GT4GameType.GT4_KR)
+                _usedCarList.LoadList("KR");
+
+            MainTabControl.IsEnabled = true;
+            MenuItem_Save.IsEnabled = true;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string name = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
