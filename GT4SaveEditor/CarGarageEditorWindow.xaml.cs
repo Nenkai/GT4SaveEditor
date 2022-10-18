@@ -15,6 +15,7 @@ using System.ComponentModel;
 
 using PDTools.Structures;
 using PDTools.Structures.PS2;
+using GT4SaveEditor.Database;
 
 namespace GT4SaveEditor
 {

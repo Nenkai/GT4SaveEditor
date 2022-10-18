@@ -28,7 +28,35 @@
                                 <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
-                                <xctk:ULongUpDown Increment="10000" Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Text="{Binding Save.GarageFile.Money}"/>
+                                <xctk:ULongUpDown Increment="10000" Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Value="{Binding Save.GarageFile.Money}"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Events">
+                            <Grid>
+                                <GroupBox Header="Categories" HorizontalAlignment="Left" Width="311">
+                                    <ListBox Name="lb_Categories" SelectionChanged="lb_Categories_SelectionChanged">
+
+                                    </ListBox>
+                                </GroupBox>
+                                <GroupBox Header="Events" HorizontalAlignment="Left" Width="306" Margin="316,0,0,0">
+                                    <ListBox Name="lb_Events" SelectionChanged="lb_Events_SelectionChanged">
+
+                                    </ListBox>
+                                </GroupBox>
+                                <GroupBox Name="gb_EventResultSettings" IsEnabled="false" Header="Result Settings" Margin="627,10,10,0" Height="244" VerticalAlignment="Top">
+                                    <Grid>
+                                        <Label Content="Permanent Result" Margin="10,7,110,182"/>
+                                        <ComboBox Name="cb_EventResult" Margin="129,10,10,188" SelectionChanged="cb_EventResult_SelectionChanged"/>
+
+                                        <Label Content="Current Result" Margin="10,42,120,147"/>
+                                        <ComboBox Name="cb_EventCurrentResult" Margin="129,46,10,152" SelectionChanged="cb_EventCurrentResult_SelectionChanged"/>
+
+
+                                        <Label Content="A-Spec Points" Margin="10,76,92,112"/>
+                                        <xctk:ByteUpDown Name="ByteUpDown_EventAspecPoints" Margin="152,79,10,119" ValueChanged="ByteUpDown_EventAspecPoints_ValueChanged"/>
+                                        
+                                    </Grid>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Garage">

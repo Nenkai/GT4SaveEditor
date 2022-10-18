@@ -17,6 +17,7 @@ using System.ComponentModel;
 using Ookii.Dialogs.Wpf;
 
 using PDTools.SaveFile.GT4;
+using GT4SaveEditor.Database;
 
 namespace GT4SaveEditor
 {
@@ -33,9 +34,10 @@ namespace GT4SaveEditor
         }
 
         private UsedCarList _usedCarList { get; set; } = new();
-        private GT4Database _gt4Database { get; set; }
+        private GT4Database _gt4Database { get; set; } = new();
+        private EventList _eventList { get; set; } = new();
 
-        private bool[] _profileTabNeedPopulate = new bool[3];
+        private bool[] _profileTabNeedPopulate = new bool[4];
 
         public MainWindow()
         {
@@ -47,9 +49,8 @@ namespace GT4SaveEditor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // This is a merged database from all regions
-            _gt4Database = new GT4Database("Resources/GT4.db");
-            _gt4Database.CreateConnection();
+            _eventList.Load("Resources/EventList.txt");
+
         }
 
         private void MenuItem_Load_Click(object sender, RoutedEventArgs e)
@@ -81,6 +82,7 @@ namespace GT4SaveEditor
             {
                 try
                 {
+                    Save.GameData.Profile.RaceRecords.Records[16].ASpecPoints = 251;
                     Save.SaveToDirectory(vistaOpenFileDialog.SelectedPath);
                 }
                 catch (Exception ex)
@@ -88,12 +90,6 @@ namespace GT4SaveEditor
                     MessageBox.Show($"Failed to load the save: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
-
-        private void label_Money_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Fix this atrocity later
-            Save.GarageFile.Money = ulong.Parse(label_Money.Text);
         }
 
         private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
@@ -107,11 +103,15 @@ namespace GT4SaveEditor
             {
                 if (_profileTabNeedPopulate[tabControl.SelectedIndex])
                 {
-                    if (tabControl.SelectedIndex == 1) // Garage
+                    if (tabControl.SelectedIndex == 1)
+                    {
+                        InitEventListing();
+                    }
+                    else if (tabControl.SelectedIndex == 2) // Garage
                     {
                         InitGarageListing();
                     }
-                    else if (tabControl.SelectedIndex == 2) // Used Car
+                    else if (tabControl.SelectedIndex == 3) // Used Car
                     {
                         // Init UCD
                         InitUsedCarListing();
@@ -124,14 +124,33 @@ namespace GT4SaveEditor
 
         private void OnSaveLoaded()
         {
-            if (Save.GameType == GT4GameType.GT4_EU)
-                _usedCarList.LoadList("EU");
-            else if (Save.GameType == GT4GameType.GT4_JP)
-                _usedCarList.LoadList("JP");
-            else if (Save.GameType == GT4GameType.GT4_US)
-                _usedCarList.LoadList("US");
-            else if (Save.GameType == GT4GameType.GT4_KR)
-                _usedCarList.LoadList("KR");
+            switch (Save.GameType)
+            {
+                case GT4GameType.Unknown:
+                    break;
+                case GT4GameType.GT4_EU:
+                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_CN_UCD.txt");
+                    _gt4Database.CreateConnection("Resources/Databases/GT4_EU2560.sqlite");
+                    break;
+                case GT4GameType.GT4_US:
+                case GT4GameType.GT4O_US:
+                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_US_UCD.txt");
+                    _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_US2560.sqlite");
+                    break;
+                case GT4GameType.GT4_JP:
+                case GT4GameType.GT4O_JP:
+                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_JP_UCD.txt");
+                    _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_JP2560.sqlite");
+                    break;
+                case GT4GameType.GT4_KR:
+                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_KR_UCD.txt");
+                    _gt4Database.CreateConnection("Resources/Databases/GT4_KR2560.sqlite");
+                    break;
+                default:
+                    break;
+            }
+
+            _eventList.LoadEventIndices(_gt4Database);
 
             MainTabControl.IsEnabled = true;
             MenuItem_Save.IsEnabled = true;
@@ -140,5 +159,7 @@ namespace GT4SaveEditor
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+
     }
 }

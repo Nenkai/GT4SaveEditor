@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.103" />
+    <PackageReference Include="Humanizer.Core" Version="2.14.1" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
   </ItemGroup>
@@ -18,22 +19,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Resources\GT4.db">
+    <None Update="Resources\Databases\GT4_EU2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\GT4_CN_UCD.txt">
+    <None Update="Resources\Databases\GT4_KR2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\GT4_EU_UCD.txt">
+    <None Update="Resources\Databases\GT4_PREMIUM_JP2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\GT4_JP_UCD.txt">
+    <None Update="Resources\Databases\GT4_PREMIUM_US2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\GT4_KR_UCD.txt">
+    <None Update="Resources\EventList.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\GT4_US_UCD.txt">
+    <None Update="Resources\UsedCarLineups\GT4_CN_UCD.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\UsedCarLineups\GT4_EU_UCD.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\UsedCarLineups\GT4_JP_UCD.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\UsedCarLineups\GT4_KR_UCD.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\UsedCarLineups\GT4_US_UCD.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

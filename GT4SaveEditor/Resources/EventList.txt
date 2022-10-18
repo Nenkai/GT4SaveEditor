@@ -1,0 +1,219 @@
+﻿// Beginner Hall
+Sunday Cup|am_sunday_0001|am_sunday_0002|am_sunday_0003|am_sunday_0004|am_sunday_0005|
+FF Challenge|am_ff_0001|am_ff_0002|am_ff_0003|am_ff_0004|am_ff_0005|
+FR Challenge|am_fr_0001|am_fr_0002|am_fr_0003|am_fr_0004|am_fr_0005|
+4WD Challenge|am_4wd_0001|am_4wd_0002|am_4wd_0003|am_4wd_0004|am_4wd_0005|
+MR Challenge|am_mr_0001|am_mr_0002|am_mr_0003|am_mr_0004|am_mr_0005|
+Lightweight K-Car Cup 1|am_kcar_0001|am_kcar_0002|am_kcar_0003|
+Spider & Roadster|am_spider_0001|am_spider_0002|am_spider_0003|
+Pickup Truck Race|am_pickup_0001|am_pickup_0002|am_pickup_0003|
+
+// Professional Hall
+Clubman Cup|pr_clubman_0001|pr_clubman_0002|pr_clubman_0003|pr_clubman_0004|pr_clubman_0005|
+Tuning Car Grand Prix Championship|pr_tuning_0500|pr_tuning_0501|pr_tuning_0502|pr_tuning_0503|pr_tuning_0504|pr_tuning_0505|
+Race of NA Sports|pr_na_0001|pr_na_0002|pr_na_0003|pr_na_0004|pr_na_0005|
+Turbo Sports Cars|pr_turbo_0001|pr_turbo_0002|pr_turbo_0003|pr_turbo_0004|pr_turbo_0005|
+Boxer Spirit|pr_boxer_0001|pr_boxer_0002|pr_boxer_0003
+World Classics Championship|pr_classic_0500|pr_classic_0501|pr_classic_0502|pr_classic_0503|pr_classic_0504|pr_classic_0505|
+World Compact Championship|pr_compact_0500|pr_compact_0501|pr_compact_0502|pr_compact_0503|pr_compact_0504|pr_compact_0505|
+Supercar Festival|pr_supercar_0001|pr_supercar_0002|pr_supercar_0003|pr_supercar_0004|pr_supercar_0005|
+Gran Turismo World Championship|pr_gtworld_1000|pr_gtworld_1001|pr_gtworld_1002|pr_gtworld_1003|pr_gtworld_1004|pr_gtworld_1005|pr_gtworld_1006|pr_gtworld_1007|pr_gtworld_1008|pr_gtworld_1009|pr_gtworld_1010|
+
+// Extreme Hall
+Gran Turismo All Stars Championship|ex_gtallstar_1000|ex_gtallstar_1001|ex_gtallstar_1002|ex_gtallstar_1003|ex_gtallstar_1004|ex_gtallstar_1005|ex_gtallstar_1006|ex_gtallstar_1007|ex_gtallstar_1008|ex_gtallstar_1009|ex_gtallstar_1010|
+Dream Car Championship|ex_dream_1000|ex_dream_1001|ex_dream_1002|ex_dream_1003|ex_dream_1004|ex_dream_1005|ex_dream_1006|ex_dream_1007|ex_dream_1008|ex_dream_1009|ex_dream_1010|
+Polyphony Digital Cup Championship|ex_polyphony_1000|ex_polyphony_1001|ex_polyphony_1002|ex_polyphony_1003|ex_polyphony_1004|ex_polyphony_1005|ex_polyphony_1006|ex_polyphony_1007|ex_polyphony_1008|ex_polyphony_1009|ex_polyphony_1010|
+Like The Wind|ex_wind_0001
+Formula GT World Championship|ex_formula_1500|ex_formula_1501|ex_formula_1502|ex_formula_1503|ex_formula_1504|ex_formula_1505|ex_formula_1506|ex_formula_1507|ex_formula_1508|ex_formula_1509|ex_formula_1510|ex_formula_1511|ex_formula_1512|ex_formula_1513|ex_formula_1514|ex_formula_1515
+Real Circuit Tours|ex_real_circuit_0001|ex_real_circuit_0002|ex_real_circuit_0003|ex_real_circuit_0004|ex_real_circuit_0005|ex_real_circuit_0006|ex_real_circuit_0007|ex_real_circuit_0008
+Premium Sports Lounge|ex_premium_0001|ex_premium_0002|ex_premium_0003|ex_premium_0004|ex_premium_0005
+
+// Endurance Hall
+Grand Valley 300 km|en_grandvalley300_0001
+Laguna Seca 200 miles|en_laguna200_0001
+Roadster 4h Endurance|en_roadster4h_0001
+Tokyo R246 300 km|en_r246_300_0001
+Super Speedway 150 miles|en_ssw150_0001
+Nurburgring 24h Endurance|en_nur24h_0001
+Nurburgring 4h Endurance|en_nur4h_0001
+Suzuka 1000km|en_suzuka1000_0001
+Motegi 8h Endurance|en_motegi8h_0001
+Tsukuba 9h Endurance|en_tsukuba9h_0001
+Circuit de la Sarthe 24h I|en_sarthe24h_0001
+Circuit de la Sarthe 24h II|en_sarthe_old24h_0001
+Fuji 1000 km|en_fuji1000_0001
+Infineon World Sports Car Race|en_infinion_alms_0001
+El Capitan 200 miles|en_capitan200_0001
+New York 200 mile race|en_newyork200_0001
+
+// Rally Hall
+Umbria Rally (Easy)|rh_assisi_e_0001|rh_assisi_e_0002
+Capri Rally (Easy)|rh_capri_e_0001|rh_capri_e_0002
+Grand Canyon Rally (Easy)|rh_grandcanyon_e_0001|rh_grandcanyon_e_0002
+Whistler Ice Race (Easy)|rh_icerace_e_0001|rh_icerace_e_0002
+Chamonix Rally (Easy)|rh_nursnow_e_0001|rh_nursnow_e_0002
+George V Rally (Easy)|rh_paris_rally_e_0001|rh_paris_rally_e_0002
+Swiss Alps Rally (Easy)|rh_smtsouth_e_0001|rh_smtsouth_e_0002
+Tour of Tahiti (Easy)|rh_tahiti_maze_e_0001|rh_tahiti_maze_e_0002
+Tsukuba Wet Race (Easy)|rh_tsukuba_wet_e_0001
+Yosemite Rally I (Easy)|rh_yosemite_dirt_e_0001|rh_yosemite_dirt_e_0002
+Yosemite Rally II (Easy)|rh_yosemite_dirt_short_e_0001|rh_yosemite_dirt_short_e_0002
+
+Umbria Rally (Normal)|rh_assisi_n_0001|rh_assisi_n_0002
+Capri Rally (Normal)|rh_capri_n_0001|rh_capri_n_0002
+Grand Canyon Rally (Normal)|rh_grandcanyon_n_0001|rh_grandcanyon_n_0002
+Whistler Ice Race (Normal)|rh_icerace_n_0001|rh_icerace_n_0002
+Chamonix Rally (Normal)|rh_nursnow_n_0001|rh_nursnow_n_0002
+George V Rally (Normal)|rh_paris_rally_n_0001|rh_paris_rally_n_0002
+Swiss Alps Rally (Normal)|rh_smtsouth_n_0001|rh_smtsouth_n_0002
+Tour of Tahiti (Normal)|rh_tahiti_maze_n_0001|rh_tahiti_maze_n_0002
+Tsukuba Wet Race (Normal)|rh_tsukuba_wet_n_0001
+Yosemite Rally I (Normal)|rh_yosemite_dirt_n_0001|rh_yosemite_dirt_n_0002
+Yosemite Rally II (Normal)|rh_yosemite_dirt_short_n_0001|rh_yosemite_dirt_short_n_0002
+
+Umbria Rally (Hard)|rh_assisi_h_0001|rh_assisi_h_0002
+Capri Rally (Hard)|rh_capri_h_0001|rh_capri_h_0002
+Grand Canyon Rally (Hard)|rh_grandcanyon_h_0001|rh_grandcanyon_h_0002
+Whistler Ice Race (Hard)|rh_icerace_h_0001|rh_icerace_h_0002
+Chamonix Rally (Hard)|rh_nursnow_h_0001|rh_nursnow_h_0002
+George V Rally (Hard)|rh_paris_rally_h_0001|rh_paris_rally_h_0002
+Swiss Alps Rally (Hard)|rh_smtsouth_h_0001|rh_smtsouth_h_0002
+Tour of Tahiti (Hard)|rh_tahiti_maze_h_0001|rh_tahiti_maze_h_0002
+Tsukuba Wet Race (Hard)|rh_tsukuba_wet_h_0001
+Yosemite Rally I (Hard)|rh_yosemite_dirt_h_0001|rh_yosemite_dirt_h_0002
+Yosemite Rally II (Hard)|rh_yosemite_dirt_short_h_0001|rh_yosemite_dirt_short_h_0002
+
+// Japanese
+Japan Championship|jprjapan_0500|jprjapan_0501|jprjapan_0502|jprjapan_0503|jprjapan_0504|jprjapan_0505
+All Japan GT Championship|jprjgtc_1000|jprjgtc_1001|jprjgtc_1002|jprjgtc_1003|jprjgtc_1004|jprjgtc_1005|jprjgtc_1006|jprjgtc_1007|jprjgtc_1008|jprjgtc_1009|jprjgtc_1010
+Japanese 70's Classics|jprjp_70_0001|jprjp_70_0002|jprjp_70_0003|jprjp_70_0004|jprjp_70_0005
+Japanese 80's Festival|jprjp_80_0001|jprjp_80_0002|jprjp_80_0003|jprjp_80_0004|jprjp_80_0005
+Japanese 90's Challenge|jprjp_90_0001|jprjp_90_0002|jprjp_90_0003|jprjp_90_0004|jprjp_90_0005
+Japanese Compact Club|jprjp_compact_0500|jprjp_compact_0501|jprjp_compact_0502|jprjp_compact_0503|jprjp_compact_0504|jprjp_compact_0505
+
+// American
+All American Championship|usrusa_0500|usrusa_0501|usrusa_0502|usrusa_0503|usrusa_0504|usrusa_0505
+Stars and Stripes|usrstar_0001|usrstar_0002|usrstar_0003
+Muscle Car Competition|usrmuscle_0001|usrmuscle_0002|usrmuscle_0003
+Old Muscle Car Competition|usrmuscle_old_0001|usrmuscle_old_0002|usrmuscle_old_0003
+
+// European
+Pan Euro Championship|eureurope_0500|eureurope_0501|eureurope_0502|eureurope_0503|eureurope_0504|eureurope_0505
+British GT Series|eurbritish_gt_0501|eurbritish_gt_0502|eurbritish_gt_0503|eurbritish_gt_0504|eurbritish_gt_0505
+British Lightweight Series|eurbritish_light_0001|eurbritish_light_0002|eurbritish_light_0003
+Deutsche Touring Car Meistershaft|eurdeu_touring_0500|eurdeu_touring_0501|eurdeu_touring_0502|eurdeu_touring_0503|eurdeu_touring_0504|eurdeu_touring_0505|
+La Festa Italiano|euritaly_0001|euritaly_0002|euritaly_0003
+Tous France Championnat|eurfrench_0500|eurfrench_0501|eurfrench_0502|eurfrench_0503|eurfrench_0504|eurfrench_0505
+Europe Classic Car League|eureuro_classic_0500|eureuro_classic_0501|eureuro_classic_0502|eureuro_classic_0503|eureuro_classic_0504|eureuro_classic_0505
+Europe Hot Hatch League|eureuro_hatch_0500|eureuro_hatch_0501|eureuro_hatch_0502|eureuro_hatch_0503|eureuro_hatch_0504|eureuro_hatch_0505|
+1000 miles !|eur1000mile_0400|eur1000mile_0401|eur1000mile_0402|eur1000mile_0403|eur1000mile_0404
+Schwarzwald Liga A|eurschvartz_a_0001|eurschvartz_a_0002|eurschvartz_a_0003
+Schwarzwald Liga B|eurschvartz_b_0001|eurschvartz_b_0002|eurschvartz_b_0003|eurschvartz_b_0004|eurschvartz_b_0005
+
+// BRANDS
+
+// Aston Martin
+Aston Martin Festival|uk_aston_0001|uk_aston_0002|uk_aston_0003
+
+// Audi
+Audi - Tourist Trophy|de_audi_tt_0300|de_audi_tt_0301|de_audi_tt_0302|de_audi_tt_0303
+Audi - A3 Cup|de_audi_a3_0001|de_audi_a3_0002|de_audi_a3_0003
+
+// BMW
+BMW - 1 Series Trophy|de_bmw1_0001|de_bmw1_0002|de_bmw1_0003
+BMW - Club "M"|de_bmw_m_0500|de_bmw_m_0501|de_bmw_m_0502|de_bmw_m_0503|de_bmw_m_0504|de_bmw_m_0505
+
+// Chevrolet
+Chevrolet - Corvette Festival|us_chev_corvette_0001|us_chev_corvette_0002|us_chev_corvette_0003|us_chev_corvette_0004|us_chev_corvette_0005
+Chevrolet - Camaro Meeting|us_chev_camaro_0001|us_chev_camaro_0002|us_chev_camaro_0003
+
+// Chrysler
+Chrysler - Crossfire Trophy|us_chry_crossfire_0001|us_chry_crossfire_0002|us_chry_crossfire_0003
+
+// Citroen
+Citroen - 2 HP - 2CV Classics|fr_citroen_2cv_0500|fr_citroen_2cv_0501|fr_citroen_2cv_0502|fr_citroen_2cv_0503|fr_citroen_2cv_0504|fr_citroen_2cv_0505
+
+// Daihatsu
+Daihatsu - Copen Race|jp_daihatsu_copen_0001|jp_daihatsu_copen_0002|jp_daihatsu_copen_0003
+Daihatsu - Midget II Race|jp_daihatsu_midget2_0001
+
+// Honda
+Honda - Type R Meeting|jp_honda_typer_0001|jp_honda_typer_0002|jp_honda_typer_0003|jp_honda_typer_0004|jp_honda_typer_0005
+Honda - Civic Race|jp_honda_civic_0001|jp_honda_civic_0002|jp_honda_civic_0003|jp_honda_civic_0004|jp_honda_civic_0005
+
+// Hyundai
+Hyundai Sports Festival|kr_hyundai_sport_0001|kr_hyundai_sport_0002|kr_hyundai_sport_0003|kr_hyundai_sport_0004|kr_hyundai_sport_0005|
+
+// Izuzu
+Izuzu Sports Classics|jp_isuzu_0001|jp_isuzu_0002|jp_isuzu_0003
+
+// Lotus
+Lotus - Elise Trophy|uk_lotus_elise_0500|uk_lotus_elise_0501|uk_lotus_elise_0502|uk_lotus_elise_0503|uk_lotus_elise_0504|uk_lotus_elise_0505
+Lotus Classics|uk_lotus_classic_0500|uk_lotus_classic_0501|uk_lotus_classic_0502|uk_lotus_classic_0503|uk_lotus_classic_0504|uk_lotus_classic_0505
+
+// Mazda
+Mazda - Club "RE"|jp_mazda_rotary_0001|jp_mazda_rotary_0002|jp_mazda_rotary_0003|jp_mazda_rotary_0004|jp_mazda_rotary_0005
+Mazda - NR-A Roadster Cup|jp_mazda_roadster_0500|jp_mazda_roadster_0501|jp_mazda_roadster_0502|jp_mazda_roadster_0503|jp_mazda_roadster_0504|jp_mazda_roadster_0505
+Mazda - NR-A RX-8 Cup|jp_mazda_rx8_0500|jp_mazda_rx8_0501|jp_mazda_rx8_0502|jp_mazda_rx8_0503|jp_mazda_rx8_0504|jp_mazda_rx8_0505
+
+// Mercedes
+Mercedes - Legends of the Silver Arrow|de_mercedes_arrow_0001|de_mercedes_arrow_0002|de_mercedes_arrow_0003
+Mercedes - SL Challenge|de_mercedes_sl_0001|de_mercedes_sl_0002|de_mercedes_sl_0003
+
+// MG
+MG Festival|uk_mg_0001|uk_mg_0002|uk_mg_0003|uk_mg_0004|uk_mg_0005
+
+// Mini
+Mini Sports Meeting|de_mini_0001|de_mini_0002|de_mini_0003|de_mini_0004|de_mini_0005
+
+// Mitsubishi
+Mitsubishi - Evolution Meeting|jp_mitsubishi_evo_0001|jp_mitsubishi_evo_0002|jp_mitsubishi_evo_0003
+Mitsubishi - Mirage Cup|jp_mitsubishi_mirage_0500|jp_mitsubishi_mirage_0501|jp_mitsubishi_mirage_0502|jp_mitsubishi_mirage_0503|jp_mitsubishi_mirage_0504|jp_mitsubishi_mirage_0505
+
+// Nissan
+Nissan - Race of the Red "R" Emblem|jp_nissan_gtr_0001|jp_nissan_gtr_0002|jp_nissan_gtr_0003|jp_nissan_gtr_0004|jp_nissan_gtr_0005
+Nissan - Micra Brothers|jp_nissan_march_0001|jp_nissan_march_0002|jp_nissan_march_0003
+Nissan - Slivia Sisters|jp_nissan_silvia_0001|jp_nissan_silvia_0002|jp_nissan_silvia_0003
+Nissan - Club Z|jp_nissan_z_0001|jp_nissan_z_0002|jp_nissan_z_0003|jp_nissan_z_0004|jp_nissan_z_0005
+
+// Opel
+Opel - Speedster Trophy|de_opel_speed_0001|de_opel_speed_0002|de_opel_speed_0003|de_opel_speed_0004|de_opel_speed_0005
+
+// Peugeot
+Peugeot - 206 Cup|fr_peugeot_206_0001|fr_peugeot_206_0002|fr_peugeot_206_0003|fr_peugeot_206_0004|fr_peugeot_206_0005
+
+// Renault
+Renault - Clio Trophy|fr_renault_clio_0500|fr_renault_clio_0501|fr_renault_clio_0502|fr_renault_clio_0503|fr_renault_clio_0504|fr_renault_clio_0505
+Renault - Megane Cup|fr_renault_megane_0500|fr_renault_megane_0501|fr_renault_megane_0502|fr_renault_megane_0503|fr_renault_megane_0504|fr_renault_megane_0505
+
+// Alpine
+Renault Alpine Cup|fr_renault_alpine_0500|fr_renault_alpine_0501|fr_renault_alpine_0502|fr_renault_alpine_0503|fr_renault_alpine_0504|fr_renault_alpine_0505
+
+// Subaru
+Subaru 360 Race|jp_subaru_360_0001
+Subaru - Stars of Pleiades|jp_subaru_4wd_0500|jp_subaru_4wd_0501|jp_subaru_4wd_0502|jp_subaru_4wd_0503|jp_subaru_4wd_0504|jp_subaru_4wd_0505
+
+// Suzuki
+Suzuki K-Car Cup|jp_suzuki_k_0001|jp_suzuki_k_0002|jp_suzuki_k_0003
+Suzuki Concepts|jp_suzuki_concept_0001|jp_suzuki_concept_0002|jp_suzuki_concept_0003
+
+// Toyota
+Toyota Altezza Race|jp_toyota_altezza_0001|jp_toyota_altezza_0002|jp_toyota_altezza_0003|jp_toyota_altezza_0004|jp_toyota_altezza_0005
+Toyota Vitz|jp_toyota_altezza_0001|jp_toyota_altezza_0002|jp_toyota_altezza_0003|jp_toyota_altezza_0004|jp_toyota_altezza_0005
+
+// Triumph
+Triumph - Spitfire Cup|uk_triumph_spitfire_0001|uk_triumph_spitfire_0002|uk_triumph_spitfire_0003|uk_triumph_spitfire_0004|uk_triumph_spitfire_0005
+
+// TVR
+TVR - Blackpool Racers|uk_tvr_0001|uk_tvr_0002|uk_tvr_0003|uk_tvr_0004|uk_tvr_0005
+
+// Volkswagen
+Volkswagen - Beetle Cup|de_vw_beetle_0500|de_vw_beetle_0501|de_vw_beetle_0502|de_vw_beetle_0503|de_vw_beetle_0504|de_vw_beetle_0505
+Volkswagen - Lupo Cup|de_vw_lupo_0500|de_vw_lupo_0501|de_vw_lupo_0502|de_vw_lupo_0503|de_vw_lupo_0504|de_vw_lupo_0505
+Volkswagen - GTi Cup|de_vw_gti_0001|de_vw_gti_0002|de_vw_gti_0003|de_vw_gti_0004|de_vw_gti_0005
+
+// Saleen
+Saleen S7 Cup|us_saleen_s7_0001|us_saleen_s7_0002|us_saleen_s7_0003|us_saleen_s7_0004|us_saleen_s7_0005
+
+// Shelby
+Shelby Cobra Cup|us_shelby_cobra_0001|us_shelby_cobra_0002|us_shelby_cobra_0003|us_shelby_cobra_0004|us_shelby_cobra_0005
