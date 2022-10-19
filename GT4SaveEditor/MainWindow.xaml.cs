@@ -33,11 +33,13 @@ namespace GT4SaveEditor
             set { _save = value; OnPropertyChanged(nameof(Save)); }
         }
 
-        private UsedCarList _usedCarList { get; set; } = new();
+        private UsedCarDatabase _usedCarDb { get; set; } = new();
         private GT4Database _gt4Database { get; set; } = new();
-        private EventList _eventList { get; set; } = new();
+        private EventDatabase _eventDb { get; set; } = new();
+        public PresentCarDatabase _presentCarDb { get; set; } = new();
+        public PresentCourseDatabase _presentCourseDb { get; set; } = new();
 
-        private bool[] _profileTabNeedPopulate = new bool[4];
+        private bool[] _profileTabNeedPopulate = new bool[5];
 
         public MainWindow()
         {
@@ -49,8 +51,9 @@ namespace GT4SaveEditor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _eventList.Load("Resources/EventList.txt");
-
+            _eventDb.Load("Resources/EventList.txt");
+            _presentCarDb.Load("Resources/PresentCarList.txt");
+            _presentCourseDb.Load("Resources/PresentCourseList.txt");
         }
 
         private void MenuItem_Load_Click(object sender, RoutedEventArgs e)
@@ -111,7 +114,11 @@ namespace GT4SaveEditor
                     {
                         InitGarageListing();
                     }
-                    else if (tabControl.SelectedIndex == 3) // Used Car
+                    else if (tabControl.SelectedIndex == 3)
+                    {
+                        InitPresentListing();
+                    }
+                    else if (tabControl.SelectedIndex == 4) // Used Car
                     {
                         // Init UCD
                         InitUsedCarListing();
@@ -129,28 +136,28 @@ namespace GT4SaveEditor
                 case GT4GameType.Unknown:
                     break;
                 case GT4GameType.GT4_EU:
-                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_CN_UCD.txt");
+                    _usedCarDb.LoadList("Resources/UsedCarLineups/GT4_CN_UCD.txt");
                     _gt4Database.CreateConnection("Resources/Databases/GT4_EU2560.sqlite");
                     break;
                 case GT4GameType.GT4_US:
                 case GT4GameType.GT4O_US:
-                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_US_UCD.txt");
+                    _usedCarDb.LoadList("Resources/UsedCarLineups/GT4_US_UCD.txt");
                     _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_US2560.sqlite");
                     break;
                 case GT4GameType.GT4_JP:
                 case GT4GameType.GT4O_JP:
-                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_JP_UCD.txt");
+                    _usedCarDb.LoadList("Resources/UsedCarLineups/GT4_JP_UCD.txt");
                     _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_JP2560.sqlite");
                     break;
                 case GT4GameType.GT4_KR:
-                    _usedCarList.LoadList("Resources/UsedCarLineups/GT4_KR_UCD.txt");
+                    _usedCarDb.LoadList("Resources/UsedCarLineups/GT4_KR_UCD.txt");
                     _gt4Database.CreateConnection("Resources/Databases/GT4_KR2560.sqlite");
                     break;
                 default:
                     break;
             }
 
-            _eventList.LoadEventIndices(_gt4Database);
+            _eventDb.LoadEventIndices(Save.GameType, _gt4Database);
 
             MainTabControl.IsEnabled = true;
             MenuItem_Save.IsEnabled = true;
@@ -160,6 +167,24 @@ namespace GT4SaveEditor
         protected void OnPropertyChanged(string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentDate = GameCalendar.SelectedDate.Value;
+            TimeSpan elapsed = currentDate - PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate();
+            iud_CurrentDay.Value = (int)elapsed.TotalDays;
+            iud_CurrentWeek.Value = (int)elapsed.TotalDays / 7;
+        }
 
+        private void iud_CurrentDay_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            DateTime newDate = PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate() + TimeSpan.FromDays((int)iud_CurrentDay.Value);
+            GameCalendar.SelectedDate = newDate;
+        }
+
+        private void iud_CurrentWeek_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            DateTime newDate = PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate() + TimeSpan.FromDays((int)iud_CurrentWeek.Value * 7);
+            GameCalendar.SelectedDate = newDate;
+        }
     }
 }

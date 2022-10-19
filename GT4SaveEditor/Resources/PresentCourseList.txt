@@ -1,0 +1,27 @@
+﻿// Name|Label|Number of Weeks
+
+Deep Forest Raceway|deepforest|2
+Opera Paris|paris_tarmac|4
+Fuji Speedway 80's|fisco_old|6
+Special State Route 5|route5|8
+Suzuka Circuit|suzuka|10
+Twin Ring Motegi - East Short Course|motegi_east|12
+Grand Valley East|grandvalley|14
+Hong Kong|hongkong|16
+Suzuka Circuit West Course|suzuka_west|18
+Fuji Speedway 2005 GT|new_fisco_gt|20
+Ice Arena|icerace|22
+Apricot Hill Raceway|apricot|24
+Côte d'Azur|montecarlo|26
+Tahiti Maze|tahiti_maze|28
+Twin Ring Motegi - Road Course|motegi|30
+George V Paris|paris_rally|32
+Cathedral Rocks Trail I|yosemite_dirt|34
+Costa di Amalfi|capri|36
+Circuit de la Sarthe I|sarthe|38
+Autumn Ring|autumn|40
+Infineon Raceway - Stock Car Course|infineon_nascar|42
+Chamonix|nursnow|44
+Fuji Speedway 2005|new_fisco|46
+Tsukuba Circuit - WET|tsukuba_wet|48
+Circuit de la Sarthe II|sarthe_old|50

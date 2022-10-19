@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PDTools\PDTools.SaveFile\PDTools.SaveFile.csproj" />
+    <ProjectReference Include="..\PDTools\PDTools.Structures\PDTools.Structures.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +33,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\EventList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PresentCourseList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PresentCarList.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\UsedCarLineups\GT4_CN_UCD.txt">

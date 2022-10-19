@@ -7,7 +7,7 @@ using System.IO;
 
 namespace GT4SaveEditor.Database
 {
-    public class UsedCarList
+    public class UsedCarDatabase
     {
         public List<UsedCarWeekLineup> WeeklyLineups { get; set; } = new();
 

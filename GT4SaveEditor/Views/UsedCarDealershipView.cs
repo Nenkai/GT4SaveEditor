@@ -24,7 +24,7 @@ namespace GT4SaveEditor
         private void InitUsedCarListing()
         {
             int week = Save.GameData.Profile.UsedCar.Week;
-            UsedCarWeekLineup lineup = _usedCarList.WeeklyLineups[week];
+            UsedCarWeekLineup lineup = _usedCarDb.WeeklyLineups[week];
 
             lb_UCD_80.Items.Clear();
             for (var i = 0; i < lineup._80s.Count; i++)
@@ -83,7 +83,7 @@ namespace GT4SaveEditor
 
         private void UpDown_UCDWeek_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (!string.IsNullOrEmpty(_usedCarList.Region))
+            if (!string.IsNullOrEmpty(_usedCarDb.Region))
                 InitUsedCarListing();
         }
 

@@ -32,12 +32,12 @@ namespace GT4SaveEditor
     {
         private void InitEventListing()
         {
-            foreach (EventCategory category in _eventList.Categories)
+            foreach (EventCategory category in _eventDb.Categories)
             {
                 lb_Categories.Items.Add(category);
             }
 
-            PopulateEventsFromCategory(_eventList.Categories[0]);
+            PopulateEventsFromCategory(_eventDb.Categories[0]);
 
             cb_EventResult.Items.Clear();
             foreach (var i in Enum.GetValues<Result>())

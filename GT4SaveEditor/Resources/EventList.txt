@@ -1,10 +1,21 @@
-﻿// Beginner Hall
+﻿// Licenses
+National B|l0b0001|l0b0002|l0b0003|l0b0004|l0b0005|l0b0006|l0b0007|l0b0008|l0b0009|l0b0010|l0b0011|l0b0012|l0b0013|l0b0014|l0b0015|l0b0016
+National A|l0a0001|l0a0002|l0a0003|l0a0004|l0a0005|l0a0006|l0a0007|l0a0008|l0a0009|l0a0010|l0a0011|l0a0012|l0a0013|l0a0014|l0a0015|l0a0016
+International B|lib0001|lib0002|lib0003|lib0004|lib0005|lib0006|lib0007|lib0008|lib0009|lib0010|lib0011|lib0012|lib0013|lib0014|lib0015|lib0016
+International A|lia0001|lia0002|lia0003|lia0004|lia0005|lia0006|lia0007|lia0008|lia0009|lia0010|lia0011|lia0012|lia0013|lia0014|lia0015|lia0016
+Special|l0s0001|l0s0002|l0s0003|l0s0004|l0s0005|l0s0006|l0s0007|l0s0008|l0s0009|l0s0010|l0s0011|l0s0012|l0s0013|l0s0014|l0s0015|l0s0016
+Coffee Break|l0c0001|l0c0002|l0c0003|l0c0004|l0c0005
+
+// Missions
+Missions|l0m0001|l0m0002|l0m0003|l0m0004|l0m0005|l0m0006|l0m0007|l0m0008|l0m0009|l0m0010|l0m0011|l0m0012|l0m0013|l0m0014|l0m0015|l0m0016|l0m0017|l0m0018|l0m0019|l0m0020|l0m0021|l0m0022|l0m0023|l0m0024|l0m0025|l0m0026|l0m0027|l0m0028|l0m0029|l0m0030|l0m0031|l0m0032|l0m0033|l0m0034
+
+// Beginner Hall
 Sunday Cup|am_sunday_0001|am_sunday_0002|am_sunday_0003|am_sunday_0004|am_sunday_0005|
 FF Challenge|am_ff_0001|am_ff_0002|am_ff_0003|am_ff_0004|am_ff_0005|
 FR Challenge|am_fr_0001|am_fr_0002|am_fr_0003|am_fr_0004|am_fr_0005|
 4WD Challenge|am_4wd_0001|am_4wd_0002|am_4wd_0003|am_4wd_0004|am_4wd_0005|
 MR Challenge|am_mr_0001|am_mr_0002|am_mr_0003|am_mr_0004|am_mr_0005|
-Lightweight K-Car Cup 1|am_kcar_0001|am_kcar_0002|am_kcar_0003|
+Lightweight K-Car Cup|am_kcar_0001|am_kcar_0002|am_kcar_0003|
 Spider & Roadster|am_spider_0001|am_spider_0002|am_spider_0003|
 Pickup Truck Race|am_pickup_0001|am_pickup_0002|am_pickup_0003|
 
@@ -111,6 +122,9 @@ Schwarzwald Liga A|eurschvartz_a_0001|eurschvartz_a_0002|eurschvartz_a_0003
 Schwarzwald Liga B|eurschvartz_b_0001|eurschvartz_b_0002|eurschvartz_b_0003|eurschvartz_b_0004|eurschvartz_b_0005
 
 // BRANDS
+
+// Alfa
+Alfa - GTA Cup|it_alfa_gta_0001|it_alfa_gta_0002|it_alfa_gta_0003
 
 // Aston Martin
 Aston Martin Festival|uk_aston_0001|uk_aston_0002|uk_aston_0003

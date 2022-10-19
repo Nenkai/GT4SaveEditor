@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using PDTools.SaveFile.GT4;
+
 namespace GT4SaveEditor.Database
 {
-    public class EventList
+    public class EventDatabase
     {
         public List<EventCategory> Categories { get; set; } = new();
 
@@ -36,13 +38,38 @@ namespace GT4SaveEditor.Database
             }
         }
 
-        public void LoadEventIndices(GT4Database database)
+        public void LoadEventIndices(GT4GameType type, GT4Database database)
         {
             foreach (EventCategory category in Categories)
             {
                 foreach (GameEvent @event in category.Events)
                 {
-                    (int RowID, int CourseID, string GameMode) @eventData = database.GetRaceRowIndexByLabel(@event.Label);
+                    string label = @event.Label;
+
+                    // Licenses/Missions have a region prefix
+                    if (label.StartsWith("l0c") || label.StartsWith("l0m") || 
+                        label.StartsWith("l0b") || label.StartsWith("l0a") || label.StartsWith("lib") || label.StartsWith("lia") || label.StartsWith("l0s"))
+                    {
+                        switch (type)
+                        {
+                            case GT4GameType.GT4_EU:
+                                label = "uk" + label;
+                                break;
+                            case GT4GameType.GT4_US:
+                            case GT4GameType.GT4O_US:
+                                label = "us" + label;
+                                break;
+                            case GT4GameType.GT4_JP:
+                            case GT4GameType.GT4O_JP:
+                                label = "jp" + label;
+                                break;
+                            case GT4GameType.GT4_KR:
+                                label = "kr" + label;
+                                break;
+                        }
+                    }
+
+                    (int RowID, int CourseID, string GameMode) @eventData = database.GetRaceRowIndexByLabel(label);
                     @event.DbIndex = eventData.RowID;
                     @event.CourseLabel = database.GetCourseLabelByID(eventData.CourseID);
                     @event.GameMode = eventData.GameMode;

@@ -24,11 +24,32 @@
                     <TabControl Name="tabControl_Profile" SelectionChanged="tabControl_Profile_SelectionChanged">
                         <TabItem Header="Main">
                             <Grid>
-                                <Label VerticalAlignment="Top" Margin="10,10,700,0">UserName</Label>
-                                <TextBox Margin="99,17,595,0" VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <GroupBox Header="Profile Settings" Margin="10,0,534,10">
+                                    <Grid>
+                                        <Label VerticalAlignment="Top" Margin="10,9,218,0">Player Name</Label>
+                                        <TextBox VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,15,10,0"/>
 
-                                <Label VerticalAlignment="Top" Margin="10,42,710,0">Credits</Label>
-                                <xctk:ULongUpDown Increment="10000" Margin="99,48,595,0" VerticalAlignment="Top" Name="label_Money" Value="{Binding Save.GarageFile.Money}"/>
+                                        <Label VerticalAlignment="Top" Margin="10,42,232,0">Credits</Label>
+                                        <xctk:ULongUpDown Increment="10000" Margin="100,48,10,0" VerticalAlignment="Top" Name="label_Money" Value="{Binding Save.GarageFile.Money}"/>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Calendar" Margin="359,0,120,0" Height="216" VerticalAlignment="Top">
+                                    <Grid>
+                                        <Calendar Name="GameCalendar" 
+                                                  SelectedDate="{Binding Save.GameData.Profile.Calendar.Date}" DisplayDate="{Binding Save.GameData.Profile.Calendar.Date}" 
+                                                  SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,10,10,10">
+                                            <Calendar.BlackoutDates>
+                                                <CalendarDateRange Start="01.01.0001" End="04.01.2005" />
+                                            </Calendar.BlackoutDates>
+                                        </Calendar>
+                                        
+                                        <Label Margin="10,14,309,153">Day</Label>
+                                        <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="93,13,201,152" ValueChanged="iud_CurrentDay_ValueChanged"/>
+
+                                        <Label Name="lb_CurrentWeek" Margin="10,47,309,118">Week</Label>
+                                        <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="93,47,201,118" ValueChanged="iud_CurrentWeek_ValueChanged"/>
+                                    </Grid>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Events">
@@ -54,7 +75,7 @@
 
                                         <Label Content="A-Spec Points" Margin="10,76,92,112"/>
                                         <xctk:ByteUpDown Name="ByteUpDown_EventAspecPoints" Margin="152,79,10,119" ValueChanged="ByteUpDown_EventAspecPoints_ValueChanged"/>
-                                        
+
                                     </Grid>
                                 </GroupBox>
                             </Grid>
@@ -80,7 +101,40 @@
                                 </GroupBox>
 
                             </Grid>
+                        </TabItem>
 
+                        <TabItem Header="Presents/Unlocks">
+                            <Grid>
+                                <Grid Margin="0,0,0,77">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <GroupBox Header="Car Unlocks">
+                                        <ListBox Grid.Column="0" ItemsSource="{Binding PresentCarUnlocks}">
+                                            <ListBox.ItemTemplate>
+                                                <HierarchicalDataTemplate>
+                                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+                                                </HierarchicalDataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
+                                    <GroupBox Header="Course Unlocks" Grid.Column="1">
+                                        <ListBox Grid.Column="1" ItemsSource="{Binding PresentCourseUnlocks}">
+                                            <ListBox.ItemTemplate>
+                                                <HierarchicalDataTemplate>
+                                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+                                                </HierarchicalDataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
+                                </Grid>
+                                <Grid Height="86" VerticalAlignment="Bottom">
+                                    <TextBlock Margin="444,10,10,10" FontSize="13" TextAlignment="Center" TextWrapping="Wrap">
+                                        For debug purposes. To unlock courses increase the current week! (One course is unlocked every 2 weeks, up until 50th)
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Used Car Dealership">
                             <Grid>
