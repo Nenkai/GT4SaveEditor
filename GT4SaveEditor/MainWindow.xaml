@@ -18,6 +18,9 @@
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
+                <MenuItem Header="About">
+                    <MenuItem Header="_About GT4 Save Editor" Name="MenuItem_About" Click="MenuItem_About_Click"/>
+                </MenuItem>
             </Menu>
             <TabControl Name="MainTabControl" DockPanel.Dock="Bottom" IsEnabled="False">
                 <TabItem Header="Profile">

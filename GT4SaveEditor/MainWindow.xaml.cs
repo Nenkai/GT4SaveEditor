@@ -26,6 +26,8 @@ namespace GT4SaveEditor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public string Version { get; set; } = "0.1.0";
+
         private GT4Save _save;
         public GT4Save Save 
         {
@@ -44,6 +46,8 @@ namespace GT4SaveEditor
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Title = $"GT4 Save Editor - {Version}";
 
             for (var i = 0; i < _profileTabNeedPopulate.Length; i++)
                 _profileTabNeedPopulate[i] = true;
@@ -185,6 +189,13 @@ namespace GT4SaveEditor
         {
             DateTime newDate = PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate() + TimeSpan.FromDays((int)iud_CurrentWeek.Value * 7);
             GameCalendar.SelectedDate = newDate;
+        }
+
+        private void MenuItem_About_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"GT4 Save Editor - Version {this.Version} by Nenkai#9075\n" +
+                $"Credits:\n" +
+                $"- Hatersbby, Submaniac, pez2k - Providing saves from various regions", "About Window");
         }
     }
 }
