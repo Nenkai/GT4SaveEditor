@@ -26,7 +26,7 @@ namespace GT4SaveEditor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public string Version { get; set; } = "0.1.0";
+        public string Version { get; set; } = "0.1.1";
 
         private GT4Save _save;
         public GT4Save Save 
