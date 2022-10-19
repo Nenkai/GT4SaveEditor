@@ -17,7 +17,7 @@
                 <TabItem Header="Sheet 3" />
             </TabControl>
             <Grid DockPanel.Dock="Bottom">
-                <GroupBox Header="Car Parts">
+                <GroupBox Header="Car Parts" Margin="10,0,0,10" HorizontalAlignment="Left" Width="341">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" Width="100">
                             <Grid Height="7"/>
@@ -60,7 +60,8 @@
                             <xctk:IntegerUpDown Value="{Binding CurrentSheet.EngineBalance}"/>
                         </StackPanel>
 
-                        <StackPanel Width="3"/> <!-- Cheesy margin -->
+                        <StackPanel Width="3"/>
+                        <!-- Cheesy margin -->
                         <StackPanel Orientation="Vertical" Width="90" HorizontalAlignment="Center">
                             <Grid Height="7"/>
                             <Label Content="Displacement" Height="30"/>
@@ -78,7 +79,7 @@
                             <Label Content="NOS" Height="30"/>
                             <Label Content="Wing" Height="30"/>
                             <Label Content="Supercharger" Height="30"/>
-                            
+
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="65">
                             <StackPanel.Resources>
@@ -106,7 +107,50 @@
                     </StackPanel>
 
                 </GroupBox>
-
+                <GroupBox Header="Gear Ratios" Margin="356,0,328,10">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="80">
+                            <Grid Height="7"/>
+                            <Label Content="1st" Height="30"/>
+                            <Label Content="2nd" Height="30"/>
+                            <Label Content="3rd" Height="30"/>
+                            <Label Content="4th" Height="30"/>
+                            <Label Content="5th" Height="30"/>
+                            <Label Content="6th" Height="30"/>
+                            <Label Content="7th" Height="30"/>
+                            <Label Content="8th" Height="30"/>
+                            <Label Content="9th" Height="30"/>
+                            <Label Content="10th" Height="30"/>
+                            <Label Content="11st" Height="30"/>
+                            <Label Content="Final" Height="30"/>
+                            <Label Content="Last Final" Height="30"/>
+                            <Label Content="Max Speed" Height="30"/>
+                            <Label Content="Reverse" Height="25"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="65">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio1}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio2}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio3}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio4}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio5}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio6}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio7}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio8}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio9}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio10}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio11}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.FinalGearRatio}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.LastFinalGearRatio}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.MaxSpeed}"/>
+                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearReverse}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
             </Grid>
         </DockPanel>
     </Grid>

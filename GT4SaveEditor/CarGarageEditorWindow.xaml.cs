@@ -94,6 +94,23 @@ namespace GT4SaveEditor
             public int NOS { get => _current.NOS.Code; set { _current.NOS.Code = value; } }
             public int Wing { get => _current.Wing.Code; set { _current.Wing.Code = value; } }
             public int SuperCharger { get => _current.SuperCharger.Code; set { _current.SuperCharger.Code = value;} }
+
+            public short GearRatio1  { get => _current.GearRatio1 ; set { _current.GearRatio1 = value; } }
+            public short GearRatio2  { get => _current.GearRatio2 ; set { _current.GearRatio2  = value; } }
+            public short GearRatio3  { get => _current.GearRatio3 ; set { _current.GearRatio3  = value; } }
+            public short GearRatio4  { get => _current.GearRatio4 ; set { _current.GearRatio4  = value; } }
+            public short GearRatio5  { get => _current.GearRatio5 ; set { _current.GearRatio5  = value; } }
+            public short GearRatio6  { get => _current.GearRatio6 ; set { _current.GearRatio6  = value; } }
+            public short GearRatio7  { get => _current.GearRatio7 ; set { _current.GearRatio7  = value; } }
+            public short GearRatio8  { get => _current.GearRatio8 ; set { _current.GearRatio8  = value; } }
+            public short GearRatio9  { get => _current.GearRatio9 ; set { _current.GearRatio9  = value; } }
+            public short GearRatio10 { get => _current.GearRatio10; set { _current.GearRatio10 = value; } }
+            public short GearRatio11 { get => _current.GearRatio11; set { _current.GearRatio11 = value; } }
+
+            public short GearReverse { get => _current.GearReverse; set { _current.GearReverse = value; } }
+            public short FinalGearRatio { get => _current.FinalGearRatio; set { _current.FinalGearRatio = value; } }
+            public short LastFinalGearRatio { get => _current.LastFinalGearRatio; set { _current.LastFinalGearRatio = value; } }
+            public short MaxSpeed { get => _current.MaxSpeed; set { _current.MaxSpeed = value; } }
         }
     }
 }
