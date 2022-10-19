@@ -89,7 +89,6 @@ namespace GT4SaveEditor
             {
                 try
                 {
-                    Save.GameData.Profile.RaceRecords.Records[16].ASpecPoints = 251;
                     Save.SaveToDirectory(vistaOpenFileDialog.SelectedPath);
                 }
                 catch (Exception ex)
@@ -171,22 +170,33 @@ namespace GT4SaveEditor
         protected void OnPropertyChanged(string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
+        private bool muteChanges = false;
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             var currentDate = GameCalendar.SelectedDate.Value;
             TimeSpan elapsed = currentDate - PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate();
+
+            muteChanges = true;
             iud_CurrentDay.Value = (int)elapsed.TotalDays;
             iud_CurrentWeek.Value = (int)elapsed.TotalDays / 7;
+            muteChanges = false;
+
         }
 
         private void iud_CurrentDay_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            if (muteChanges)
+                return;
+
             DateTime newDate = PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate() + TimeSpan.FromDays((int)iud_CurrentDay.Value);
             GameCalendar.SelectedDate = newDate;
         }
 
         private void iud_CurrentWeek_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            if (muteChanges)
+                return;
+
             DateTime newDate = PDTools.SaveFile.GT4.UserProfile.Calendar.GetOriginDate() + TimeSpan.FromDays((int)iud_CurrentWeek.Value * 7);
             GameCalendar.SelectedDate = newDate;
         }
