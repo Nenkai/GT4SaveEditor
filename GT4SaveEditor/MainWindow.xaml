@@ -27,13 +27,29 @@
                     <TabControl Name="tabControl_Profile" SelectionChanged="tabControl_Profile_SelectionChanged">
                         <TabItem Header="Main">
                             <Grid>
-                                <GroupBox Header="Profile Settings" Margin="10,0,534,157">
+                                <GroupBox Header="Profile Settings" Margin="10,0,0,157" HorizontalAlignment="Left" Width="344">
                                     <Grid>
                                         <Label VerticalAlignment="Top" Margin="10,9,218,0">Player Name</Label>
                                         <TextBox VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,15,10,0"/>
 
                                         <Label VerticalAlignment="Top" Margin="10,42,232,0">Credits</Label>
-                                        <xctk:ULongUpDown Increment="10000" Margin="100,48,10,0" VerticalAlignment="Top" Name="label_Money" Value="{Binding Save.GarageFile.Money}"/>
+                                        <xctk:ULongUpDown Increment="10000" Margin="100,47,10,0" VerticalAlignment="Top" Value="{Binding Save.GarageFile.Money}"/>
+
+                                        <Label VerticalAlignment="Top" Margin="10,76,195,0">Total Prize Money</Label>
+                                        <xctk:LongUpDown Margin="151,81,10,0" VerticalAlignment="Top" Value="{Binding Save.GameData.Profile.TotalPrizeMoney}"/>
+
+                                        <Label VerticalAlignment="Top" Margin="10,108,195,0">Total Prize Cars</Label>
+                                        <xctk:IntegerUpDown Margin="151,113,10,0" VerticalAlignment="Top" Value="{Binding Save.GameData.Profile.TotalPrizeCars}"/>
+
+                                        <Label VerticalAlignment="Top" Margin="10,139,181,0">Total A-Spec Distance</Label>
+                                        <xctk:LongUpDown Margin="151,144,10,0" VerticalAlignment="Top" Value="{Binding Save.GameData.Profile.TotalASpecDistanceMeters}"/>
+
+                                        <Label VerticalAlignment="Top" Margin="10,170,181,0">Total B-Spec Distance</Label>
+                                        <xctk:LongUpDown Margin="151,175,10,0" VerticalAlignment="Top" Value="{Binding Save.GameData.Profile.TotalBSpecDistanceMeters}"/>
+
+                                        <CheckBox Content="Withdrawn credits from GT3 Save" Margin="10,205,100,0" VerticalAlignment="Top" VerticalContentAlignment="Center" IsChecked="{Binding Save.GameData.Profile.WithdrawnGT3}" Height="20"/>
+                                        <CheckBox Content="Withdrawn credits from GT4P Save" Margin="10,230,100,0" VerticalAlignment="Top" VerticalContentAlignment="Center" IsChecked="{Binding Save.GameData.Profile.WithdrawnGT4P}" Height="20"/>
+
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="Calendar" Margin="359,0,120,0" Height="216" VerticalAlignment="Top">
@@ -45,7 +61,7 @@
                                                 <CalendarDateRange Start="01.01.0001" End="04.01.2005" />
                                             </Calendar.BlackoutDates>
                                         </Calendar>
-                                        
+
                                         <Label Margin="10,14,309,153">Day</Label>
                                         <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="93,13,201,152" ValueChanged="iud_CurrentDay_ValueChanged"/>
 
@@ -61,7 +77,7 @@
                                         <Label Margin="10,45,241,45">Root/Page</Label>
                                         <TextBox MaxLength="32" Margin="96,47,10,45" VerticalContentAlignment="Center" Text="{Binding Save.GameData.Context.MajorPage}" />
                                     </Grid>
-                                    
+
                                 </GroupBox>
                             </Grid>
                         </TabItem>
@@ -84,7 +100,6 @@
 
                                         <Label Content="Current Result" Margin="10,42,120,147"/>
                                         <ComboBox Name="cb_EventCurrentResult" Margin="129,46,10,152" SelectionChanged="cb_EventCurrentResult_SelectionChanged"/>
-
 
                                         <Label Content="A-Spec Points" Margin="10,76,92,112"/>
                                         <xctk:ByteUpDown Name="ByteUpDown_EventAspecPoints" Margin="152,79,10,119" ValueChanged="ByteUpDown_EventAspecPoints_ValueChanged"/>
@@ -110,6 +125,25 @@
                                                 <MenuItem Name="mi_Garage_EditCar" Header="Edit Car" Click="mi_Garage_EditCar_Click"/>
                                             </ContextMenu>
                                         </ListView.ContextMenu>
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Index}" />
+                                                <GridViewColumn Header="Car Name" Width="270">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Grid Width="8" Height="12" Background="{Binding Color}" Margin="0,0,4,0" />
+                                                                <TextBlock Text="{Binding Name}"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                                <GridViewColumn Header="Weight" Width="40" DisplayMemberBinding="{Binding CarData.ShowroomWeight}" />
+                                                <GridViewColumn Header="Power" Width="40" DisplayMemberBinding="{Binding CarData.ShowroomPower}" />
+                                                <GridViewColumn Header="Has Data" Width="55" DisplayMemberBinding="{Binding CarData.GarageDataExists}" />
+                                            </GridView>
+                                        </ListView.View>
                                     </ListView>
                                 </GroupBox>
 

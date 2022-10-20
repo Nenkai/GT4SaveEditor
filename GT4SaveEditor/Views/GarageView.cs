@@ -44,13 +44,19 @@ namespace GT4SaveEditor
             int garageCarCount = Save.GameData.Profile.Garage.GetCarCount();
             for (var i = 0; i < garageCarCount; i++)
             {
-                if (Save.GameData.Profile.Garage.Cars[i].IsValid())
+                if (Save.GameData.Profile.Garage.Cars[i].IsFreeSlot())
                 {
                     var car = Save.GameData.Profile.Garage.Cars[i];
+                    string label = _gt4Database.GetCarLabelByCode(car.CarCode.Code);
+                    uint color = _gt4Database.GetVariationRGBOfCarLabel(label, (int)car.VariationIndex);
+                    Color col = Color.FromRgb((byte)(color), (byte)(color >> 8), (byte)(color >> 16));
+
                     GarageCars.Add(new CarEntity()
                     {
                         Index = i,
                         Name = _gt4Database.GetCarNameByCode(car.CarCode.Code),
+                        Label = label,
+                        Color = new SolidColorBrush(col),
                         CarData = car,
                     });
                 }
@@ -76,10 +82,17 @@ namespace GT4SaveEditor
         private void mi_Garage_EditCar_Click(object sender, RoutedEventArgs e)
         {
             CarEntity entity = (CarEntity)lv_GarageCars.SelectedItem;
+            if (!entity.CarData.GarageDataExists)
+            {
+                MessageBox.Show("This car was never ridden, no garage data exists yet.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var car = Save.GarageFile.GetCar((uint)entity.Index);
             if (car is null)
             {
-                MessageBox.Show("Failed to fetch that car from the garage file, failed to decrypt it.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Failed to fetch that car from the garage file, failed to decrypt it. " +
+                    "This may be due to Float inaccuracies between PS2/PCSX2 and PC, cannot be solved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -91,13 +104,15 @@ namespace GT4SaveEditor
 
         public class CarEntity
         {
+            public Brush Color { get; set; }
             public string Name { get; set; }
+            public string Label { get; set; }
             public int Index { get; set; }
-            public GarageCar CarData { get; set; }
+            public GarageScratchUnit CarData { get; set; }
 
             public override string ToString()
             {
-                return $"{Name} - [{CarData.GetShowroomWeight()}kg - {CarData.GetShowroomPower() / 100}PS] (ID:{Index})";
+                return $"{Name} (ID:{Index})";
             }
         }
     }

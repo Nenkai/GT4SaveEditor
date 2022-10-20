@@ -59,9 +59,22 @@ namespace GT4SaveEditor.Database
             return res.GetString(0);
         }
 
+        public uint GetVariationRGBOfCarLabel(string label, int varOrder)
+        {
+            var res = ExecuteQuery($"SELECT VariationID FROM CAR_VARIATION_american WHERE Label = \"{label}\"");
+            res.Read();
+
+            int variationRowId = res.GetInt32(0);
+
+            res = ExecuteQuery($"SELECT RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" AND VarOrder = \"{varOrder + 1}\"");
+            res.Read();
+
+            return (uint)res.GetInt32(0);
+        }
+
         public List<string> GetAllRaceLabels()
         {
-            var res = ExecuteQuery($"SELECT Label FROM RACE;");
+            var res = ExecuteQuery($"SELECT Label FROM RACE");
 
             List<string> strs = new List<string>();
             while (res.Read())
@@ -72,6 +85,14 @@ namespace GT4SaveEditor.Database
         public string GetCarNameByCode(int code)
         {
             var res = ExecuteQuery($"SELECT Name FROM CAR_NAME_american WHERE RowId = \"{code}\"");
+            res.Read();
+
+            return res.GetString(0);
+        }
+
+        public string GetCarLabelByCode(int code)
+        {
+            var res = ExecuteQuery($"SELECT Label FROM GENERIC_CAR WHERE RowId = \"{code}\"");
             res.Read();
 
             return res.GetString(0);

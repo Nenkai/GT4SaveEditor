@@ -160,10 +160,15 @@ namespace GT4SaveEditor
                     break;
             }
 
+            for (var i = 0; i < _profileTabNeedPopulate.Length; i++)
+                _profileTabNeedPopulate[i] = true;
+
             _eventDb.LoadEventIndices(Save.GameType, _gt4Database);
 
             MainTabControl.IsEnabled = true;
             MenuItem_Save.IsEnabled = true;
+
+            tabControl_Profile.SelectedIndex = 0;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
