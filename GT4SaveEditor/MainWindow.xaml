@@ -27,7 +27,7 @@
                     <TabControl Name="tabControl_Profile" SelectionChanged="tabControl_Profile_SelectionChanged">
                         <TabItem Header="Main">
                             <Grid>
-                                <GroupBox Header="Profile Settings" Margin="10,0,534,10">
+                                <GroupBox Header="Profile Settings" Margin="10,0,534,157">
                                     <Grid>
                                         <Label VerticalAlignment="Top" Margin="10,9,218,0">Player Name</Label>
                                         <TextBox VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,15,10,0"/>
@@ -52,6 +52,16 @@
                                         <Label Name="lb_CurrentWeek" Margin="10,47,309,118">Week</Label>
                                         <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="93,47,201,118" ValueChanged="iud_CurrentWeek_ValueChanged"/>
                                     </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Context Settings (only if you know what you are doing!)" Margin="10,0,534,10" Height="142" VerticalAlignment="Bottom">
+                                    <Grid>
+                                        <Label Margin="10,10,241,80">Project</Label>
+                                        <TextBox MaxLength="32" Margin="96,12,10,80" VerticalContentAlignment="Center" Text="{Binding Save.GameData.Context.MajorProject}" />
+
+                                        <Label Margin="10,45,241,45">Root/Page</Label>
+                                        <TextBox MaxLength="32" Margin="96,47,10,45" VerticalContentAlignment="Center" Text="{Binding Save.GameData.Context.MajorPage}" />
+                                    </Grid>
+                                    
                                 </GroupBox>
                             </Grid>
                         </TabItem>
