@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GT4SaveEditor"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Car Editor" Height="630" Width="860"
+        Title="Car Editor" Height="778" Width="1050"
+        ResizeMode="NoResize"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Label Name="lb_CarName" FontWeight="Bold" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="583" Height="57" VerticalAlignment="Top" Margin="10,0,0,0"/>
@@ -17,7 +18,7 @@
                 <TabItem Header="Sheet 3" />
             </TabControl>
             <Grid DockPanel.Dock="Bottom">
-                <GroupBox Header="Car Parts" Margin="10,0,0,10" HorizontalAlignment="Left" Width="341">
+                <GroupBox Header="Car Parts" Margin="10,0,0,0" HorizontalAlignment="Left" Width="341" Height="523" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" Width="100">
                             <Grid Height="7"/>
@@ -107,7 +108,7 @@
                     </StackPanel>
 
                 </GroupBox>
-                <GroupBox Header="Gear Ratios" Margin="356,0,328,10">
+                <GroupBox Header="Gear Ratios" Margin="356,0,0,0" HorizontalAlignment="Left" Width="186" Height="523" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" Width="80">
                             <Grid Height="7"/>
@@ -121,7 +122,7 @@
                             <Label Content="8th" Height="30"/>
                             <Label Content="9th" Height="30"/>
                             <Label Content="10th" Height="30"/>
-                            <Label Content="11st" Height="30"/>
+                            <Label Content="11th" Height="30"/>
                             <Label Content="Final" Height="30"/>
                             <Label Content="Last Final" Height="30"/>
                             <Label Content="Max Speed" Height="30"/>
@@ -129,27 +130,211 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="65">
                             <StackPanel.Resources>
-                                <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                <Style TargetType="{x:Type xctk:UShortUpDown}">
                                     <Setter Property="Margin" Value="0,10,0,0"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio1}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio2}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio3}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio4}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio5}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio6}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio7}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio8}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio9}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio10}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearRatio11}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.FinalGearRatio}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.LastFinalGearRatio}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.MaxSpeed}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.GearReverse}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio1}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio2}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio3}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio4}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio5}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio6}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio7}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio8}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio9}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio10}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearRatio11}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.FinalGearRatio}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.LastFinalGearRatio}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.MaxSpeed}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.GearReverse}"/>
                         </StackPanel>
                     </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Suspension" Margin="547,0,10,0" Height="388" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="160">
+                            <Grid Height="7"/>
+                            <Label Content="Front Camber" Height="30"/>
+                            <Label Content="Front Ride Height" Height="30"/>
+                            <Label Content="Front Toe" Height="30"/>
+                            <Label Content="Front Spring Rate" Height="30"/>
+                            <Label Content="Front Lever Ratio" Height="30"/>
+                            <Label Content="Front Damper F1 (Bounce)" Height="30"/>
+                            <Label Content="Front Damper F2 (Bounce)" Height="30"/>
+                            <Label Content="Front Damper F1 (Rebound)" Height="30"/>
+                            <Label Content="Front Damper F2 (Rebound)" Height="30"/>
+                            <Label Content="Front Stabilizer" Height="30"/>
+                            <Label Content="Front Pre Load Level" Height="30"/>
+                            <Label Content="Front Spring Rate Level" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="65">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                                <Style TargetType="{x:Type xctk:UShortUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontCamber}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.RideHeightF}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontToe}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontSpringRate}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LeverRatioF}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontDamperF1B}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontDamperF2B}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontDamperF1R}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontDamperF2R}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontStabilizer}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontPreLoadLevel}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.FrontSpringRateLevel}"/>
+                        </StackPanel>
+
+                        <StackPanel Width="3"/>
+                        <!-- Cheesy margin -->
+                        <StackPanel Orientation="Vertical" Width="160" HorizontalAlignment="Center">
+                            <Grid Height="7"/>
+                            <Label Content="Rear Camber" Height="30"/>
+                            <Label Content="Rear Ride Height" Height="30"/>
+                            <Label Content="Rear Toe" Height="30"/>
+                            <Label Content="Rear Spring Rate" Height="30"/>
+                            <Label Content="Rear Lever Ratio" Height="30"/>
+                            <Label Content="Rear Damper F1 (Bounce)" Height="30"/>
+                            <Label Content="Rear Damper F2 (Bounce)" Height="30"/>
+                            <Label Content="Rear Damper F1 (Rebound)" Height="30"/>
+                            <Label Content="Rear Damper F2 (Rebound)" Height="30"/>
+                            <Label Content="Rear Stabilizer" Height="30"/>
+                            <Label Content="Rear Pre Load Level" Height="30"/>
+                            <Label Content="Rear Spring Rate Level" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="65">
+                            <StackPanel.Resources>
+
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                                <Style TargetType="{x:Type xctk:UShortUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+
+                            </StackPanel.Resources>
+
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.RearCamber}"/>
+                            <xctk:UShortUpDown Value="{Binding CurrentSheet.RideHeightR}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearToe}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearSpringRate}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LeverRatioR}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearDamperF1B}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearDamperF2B}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearDamperF1R}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearDamperF2R}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearStabilizer}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearPreLoadLevel}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.RearSpringRateLevel}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="LSD Settings" Margin="547,393,0,0" HorizontalAlignment="Left" Width="310" Height="130" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid Height="7"/>
+                            <Label Content="Front Initial" Height="30"/>
+                            <Label Content="Front Accel" Height="30"/>
+                            <Label Content="Front Decel" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="55">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam1}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam2}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam3}"/>
+                        </StackPanel>
+                        <StackPanel Width="3"/>
+                        <!-- Margin -->
+
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid Height="7"/>
+                            <Label Content="Rear Initial" Height="30"/>
+                            <Label Content="Rear Accel" Height="30"/>
+                            <Label Content="Rear Decel" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="55">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam1}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam2}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam3}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </GroupBox>
+
+                <GroupBox Header="Other" Margin="862,393,0,112" HorizontalAlignment="Left" Width="166">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid Height="7"/>
+                            <Label Content="NOS Torque" Height="30"/>
+                            <Label Content="Weight Mult." Height="30"/>
+                            <Label Content="Power Mult." Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="55">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam1}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.GripMultiplier}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.PowerMultiplier}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Turbo Settings" Margin="10,523,0,0" HorizontalAlignment="Left" Width="310" Height="124" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid Height="7"/>
+                            <Label Content="Boost 1" Height="30"/>
+                            <Label Content="Peak RPM 1" Height="30"/>
+                            <Label Content="Response 1" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="55">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboBoost1}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboPeakRPM1}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboResponse1}"/>
+                        </StackPanel>
+                        <StackPanel Width="3"/>
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid Height="7"/>
+                            <Label Content="Boost 2" Height="30"/>
+                            <Label Content="Peak RPM 2" Height="30"/>
+                            <Label Content="Response 2" Height="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="55">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type xctk:ByteUpDown}">
+                                    <Setter Property="Margin" Value="0,10,0,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboBoost2}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboPeakRPM2}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.TurboResponse2}"/>
+                        </StackPanel>
+                    </StackPanel>
+
                 </GroupBox>
             </Grid>
         </DockPanel>
