@@ -21,6 +21,7 @@
     <ProjectReference Include="..\PDTools\PDTools.Structures\PDTools.Structures.csproj" />
   </ItemGroup>
 
+
   <ItemGroup>
     <None Update="Resources\Databases\GT4_EU2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

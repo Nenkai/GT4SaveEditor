@@ -61,15 +61,21 @@ namespace GT4SaveEditor.Database
 
         public uint GetVariationRGBOfCarLabel(string label, int varOrder)
         {
+            int variationRowId = GetVariationIdFromCarLabel(label);
+
+            var res = ExecuteQuery($"SELECT RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" AND VarOrder = \"{varOrder + 1}\"");
+            res.Read();
+
+            return (uint)res.GetInt32(0);
+        }
+
+        public int GetVariationIdFromCarLabel(string label)
+        {
             var res = ExecuteQuery($"SELECT VariationID FROM CAR_VARIATION_american WHERE Label = \"{label}\"");
             res.Read();
 
             int variationRowId = res.GetInt32(0);
-
-            res = ExecuteQuery($"SELECT RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" AND VarOrder = \"{varOrder + 1}\"");
-            res.Read();
-
-            return (uint)res.GetInt32(0);
+            return variationRowId;
         }
 
         public List<string> GetAllRaceLabels()
@@ -96,6 +102,40 @@ namespace GT4SaveEditor.Database
             res.Read();
 
             return res.GetString(0);
+        }
+
+        public List<(int ID, string Label, string Name)> GetAllCarLabel_Code_Name()
+        {
+            var res = ExecuteQuery($"SELECT RowId, Label, Name FROM CAR_NAME_american ORDER BY Name");
+            res.Read();
+
+            List<(int ID, string Label, string Name)> strs = new();
+            while (res.Read())
+                strs.Add((res.GetInt32(0), res.GetString(1), res.GetString(2)));
+
+            return strs;
+        }
+
+        public List<int> GetAllCarCodes()
+        {
+            var res = ExecuteQuery($"SELECT RowId FROM GENERIC_CAR");
+
+            List<int> ids = new();
+            while (res.Read())
+                ids.Add(res.GetInt32(0));
+            return ids;
+        }
+
+        public List<(string Name, int ID)> GetVariationNameAndRGBOfCar(string label)
+        {
+            int variationRowId = GetVariationIdFromCarLabel(label);
+
+            var res = ExecuteQuery($"SELECT Name, RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" ORDER BY VarOrder");
+
+            List<(string Name, int ID)> strs = new();
+            while (res.Read())
+                strs.Add((res.GetString(0), res.GetInt32(1)));
+            return strs;
         }
 
         public SQLiteDataReader ExecuteQuery(string query)

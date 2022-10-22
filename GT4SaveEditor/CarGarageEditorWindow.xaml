@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Car Editor" Height="778" Width="1050"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Label Name="lb_CarName" FontWeight="Bold" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="583" Height="57" VerticalAlignment="Top" Margin="10,0,0,0"/>

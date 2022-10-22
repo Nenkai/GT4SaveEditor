@@ -25,7 +25,7 @@ Formula GT World Championship|ex_formula_1500|sauber_mercedes_c9_89
 Real Circuit Tours|ex_real_circuit_0000|r34_gtr_v_gtcolor_pc_01
 Premium Sports Lounge|ex_premium_0000|ford_gt_no_stripe_05
 
-//ex_roadgoing_0000|caterham_7_fb_02
+Cut Roadgoing Event|ex_roadgoing_0000|caterham_7_fb_02
 Grand Valley 300 km|en_grandvalley300_0000|autounion_v16_typec_sl_37
 Laguna Seca 200 miles|en_laguna200_0000|gt40_race_69
 Roadster 4h Endurance|en_roadster4h_0000|rx7_lm_race_00

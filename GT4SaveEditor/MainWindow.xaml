@@ -110,19 +110,25 @@
                         </TabItem>
                         <TabItem Header="Garage">
                             <Grid>
-                                <GroupBox Header="Current Car" Margin="10,10,0,0" HorizontalAlignment="Left" Width="374" Height="148" VerticalAlignment="Top">
+                                <GroupBox Header="Current Car" Margin="10,10,0,0" HorizontalAlignment="Left" Width="374" Height="212" VerticalAlignment="Top">
                                     <Grid>
-                                        <Label Name="lb_CurrentCarName" Content="N/A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="10,10,10,67"/>
-                                        <Button Name="btn_EditCurrentCar" Margin="10,63,10,10" Content="Edit Car" Click="btn_EditCurrentCar_Click"/>
+                                        <Label Name="lb_CurrentCarName" Content="N/A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" Margin="10,10,10,131"/>
+                                        <Button Name="btn_EditCurrentCar" Margin="10,63,10,69" Content="Edit Car" Click="btn_EditCurrentCar_Click"/>
+                                        <Button Name="btn_EditCarStatus" IsEnabled="False" Margin="10,125,10,7" Content="Edit Car Status (Mileage, etc) - NOT IMPLEMENTED"/>
                                     </Grid>
                                 </GroupBox>
-
+                                <GroupBox Header="Management" Margin="10,227,0,0" HorizontalAlignment="Left" Width="374" Height="271" VerticalAlignment="Top">
+                                    <Grid>
+                                        <Button Name="btn_Garage_AddCar" Content="Add Specific Car..." Height="50" Margin="10,10,10,0" VerticalAlignment="Top" Click="btn_Garage_AddCar_Click" />
+                                        <Button Name="btn_Garage_AddAllMissingCars" Content="Add all missing cars" Height="50" Margin="10,65,10,0" VerticalAlignment="Top" Click="btn_Garage_AddAllMissingCars_Click"/>
+                                        <Button Name="btn_Garage_Wipe" Content="Wipe Garage (!)" Width="340" Height="50" Margin="10,120,12,0" VerticalAlignment="Top" Click="btn_Garage_Wipe_Click" />
+                                    </Grid>
+                                </GroupBox>
                                 <GroupBox Name="gb_Garage" Header="Garage" Margin="389,10,10,10">
-                                    <ListView Name="lv_GarageCars" ItemsSource="{Binding GarageCars}">
+                                    <ListView Name="lv_GarageCars" ItemsSource="{Binding GarageCars}" SelectionMode="Multiple">
                                         <ListView.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem Name="mi_Garage_SetAsCurrentCar" Header="Set As Current Car" Click="mi_Garage_SetAsCurrentCar_Click"/>
-                                                <MenuItem Name="mi_Garage_EditCar" Header="Edit Car" Click="mi_Garage_EditCar_Click"/>
+                                                <MenuItem Name="mi_Garage_DeleteCar" Header="Delete Car" Click="mi_Garage_DeleteCar_Click"/>
                                             </ContextMenu>
                                         </ListView.ContextMenu>
                                         <ListView.View>
@@ -139,8 +145,8 @@
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
 
-                                                <GridViewColumn Header="Weight" Width="40" DisplayMemberBinding="{Binding CarData.ShowroomWeight}" />
-                                                <GridViewColumn Header="Power" Width="40" DisplayMemberBinding="{Binding CarData.ShowroomPower}" />
+                                                <GridViewColumn Header="Weight" Width="45" DisplayMemberBinding="{Binding CarData.ShowroomWeight}" />
+                                                <GridViewColumn Header="Power" Width="40" DisplayMemberBinding="{Binding CarData.ShowroomPowerPS}" />
                                                 <GridViewColumn Header="Has Data" Width="55" DisplayMemberBinding="{Binding CarData.GarageDataExists}" />
                                             </GridView>
                                         </ListView.View>
@@ -152,7 +158,7 @@
 
                         <TabItem Header="Presents/Unlocks">
                             <Grid>
-                                <Grid Margin="0,0,0,77">
+                                <Grid Margin="0,0,0,40">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
@@ -176,9 +182,9 @@
                                         </ListBox>
                                     </GroupBox>
                                 </Grid>
-                                <Grid Height="86" VerticalAlignment="Bottom">
-                                    <TextBlock Margin="444,10,10,10" FontSize="13" TextAlignment="Center" TextWrapping="Wrap">
-                                        For debug purposes. To unlock courses increase the current week! (One course is unlocked every 2 weeks, up until 50th)
+                                <Grid Height="40" VerticalAlignment="Bottom">
+                                    <TextBlock FontSize="13" TextAlignment="Center" TextWrapping="Wrap">
+                                        These will not have any effect if the event results are not toggled! To unlock courses increase the current week! (One course is unlocked every 2 weeks, up until 50th)
                                     </TextBlock>
                                 </Grid>
                             </Grid>

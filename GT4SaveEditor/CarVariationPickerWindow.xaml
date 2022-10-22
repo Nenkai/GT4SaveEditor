@@ -1,0 +1,30 @@
+﻿<Window x:Class="GT4SaveEditor.CarVariationPickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GT4SaveEditor"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="Select Car Paint..." Height="400" Width="350" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <GroupBox Name="gb_Garage" Header="Car Colors">
+            <ListView Name="lv_CarColors" MouseDoubleClick="lv_VariationSelector_MouseDoubleClick" ItemsSource="{Binding VariationModels}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Color Name" Width="270">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="8" Height="12" Background="{Binding Color}" Margin="0,0,4,0" />
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+    </Grid>
+</Window>

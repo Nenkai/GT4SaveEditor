@@ -20,14 +20,166 @@ using Ookii.Dialogs.Wpf;
 using PDTools.SaveFile.GT4;
 using PDTools.SaveFile.GT4.UserProfile;
 using PDTools.Structures.PS2;
+using PDTools.Structures;
+using PDTools.Enums.PS2;
+
+using GT4SaveEditor.ViewModels;
 
 namespace GT4SaveEditor
 {
     public partial class MainWindow
     {
-        public ObservableCollection<CarEntity> GarageCars { get; set; } = new ObservableCollection<CarEntity>();
+        public ObservableCollection<CarEntityViewModel> GarageCars { get; set; } = new ObservableCollection<CarEntityViewModel>();
 
         private void InitGarageListing()
+        {
+            UpdateCurrentCarStatus();
+
+            int garageCarCount = Save.GameData.Profile.Garage.GetCarCount();
+            for (var i = 0; i < garageCarCount; i++)
+            {
+                if (Save.GameData.Profile.Garage.Cars[i].IsSlotTaken)
+                {
+                    CarEntityViewModel model = CreateGarageCarModel(i, Save.GameData.Profile.Garage.Cars[i]);
+                    GarageCars.Add(model);
+                }
+            }
+
+            btn_Garage_AddCar.IsEnabled = garageCarCount < GarageScratch.MAX_CARS;
+            gb_Garage.Header = $"Garage Cars ({garageCarCount}/1000)";
+        }
+
+        private void btn_EditCurrentCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (Save.GameData.Profile.Garage.RidingCarIndex != -1)
+            {
+                var view = new CarGarageEditorWindow(Save.GameData.Profile.Garage.CurrentCar, _gt4Database);
+                view.Owner = this;
+                view.ShowDialog();
+            }
+        }
+
+        private void mi_Garage_DeleteCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (lv_GarageCars.SelectedItem is not CarEntityViewModel)
+                return;
+
+            for (int i = lv_GarageCars.SelectedItems.Count - 1; i >= 0; i--)
+            {
+                object? item = lv_GarageCars.SelectedItems[i];
+                var selected = item as CarEntityViewModel;
+                if (selected.Index == Save.GameData.Profile.Garage.RidingCarIndex)
+                    Save.GameData.Profile.Garage.RidingCarIndex = -1;
+
+                selected.CarData.IsSlotTaken = false;
+                GarageCars.Remove(selected);
+            }
+
+            UpdateCurrentCarStatus();
+        }
+
+        private void btn_Garage_AddCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (Save.GameData.Profile.Garage.IsFull())
+                return; // This button should be disabled, but just incase
+
+            if (Save.GameType != CarPickerWindow.LoadedGameType)
+            {
+                CarPickerWindow.InitCarListing(_gt4Database);
+                CarPickerWindow.LoadedGameType = Save.GameType;
+            }
+
+            var view = new CarPickerWindow(_gt4Database);
+            view.Owner = this;
+            view.ShowDialog();
+
+            if (string.IsNullOrEmpty(view.SelectedLabel))
+                return;
+
+            // Find first free slot to use
+            int firstFreeIndex = Save.GameData.Profile.Garage.GetFirstUnusedSlotIndex();
+
+            // Create the unit
+            GarageScratchUnit unit = new GarageScratchUnit();
+            unit.CarCode = new DbCode(view.SelectedCarCode, (int)PartsTypeGT4.GENERIC_CAR);
+            unit.IsSlotTaken = true;
+            unit.Odometer = 0;
+            unit.VariationIndex = (uint)view.SelectedVariation;
+
+            // Set it
+            Save.GameData.Profile.Garage.Cars[firstFreeIndex] = unit;
+
+            CarEntityViewModel entity = CreateGarageCarModel(firstFreeIndex, unit);
+            GarageCars.Add(entity);
+
+            UpdateCurrentCarStatus();
+        }
+
+        private void btn_Garage_AddAllMissingCars_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will add all the missing cars into your garage. Continue?", "Prompt",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+
+            var ids = _gt4Database.GetAllCarCodes();
+            int added = 0;
+
+            for (var i = 0; i < ids.Count; i++)
+            {
+                if (!Save.GameData.Profile.Garage.HasCarCode(ids[i]))
+                {
+                    GarageScratchUnit unit = new GarageScratchUnit();
+                    unit.CarCode = new DbCode(ids[i], (int)PartsTypeGT4.GENERIC_CAR);
+                    unit.IsSlotTaken = true;
+
+                    int firstFreeIndex = Save.GameData.Profile.Garage.GetFirstUnusedSlotIndex();
+                    if (firstFreeIndex == -1)
+                        break;
+
+                    Save.GameData.Profile.Garage.Cars[firstFreeIndex] = unit;
+                    CarEntityViewModel entity = CreateGarageCarModel(firstFreeIndex, unit);
+                    GarageCars.Add(entity);
+
+                    added++;
+                }
+            }
+        }
+
+
+        private void btn_Garage_Wipe_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will WIPE your garage. Continue? (You still can revert this by not saving).", "Prompt",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+
+            for (var i = 0; i < Save.GameData.Profile.Garage.Cars.Length; i++)
+                Save.GameData.Profile.Garage.Cars[i].IsSlotTaken = false;
+
+            Save.GameData.Profile.Garage.RidingCarIndex = -1;
+
+            GarageCars.Clear();
+            UpdateCurrentCarStatus();
+        }
+
+        private CarEntityViewModel CreateGarageCarModel(int index, GarageScratchUnit car)
+        {
+            string label = _gt4Database.GetCarLabelByCode(car.CarCode.Code);
+            uint color = _gt4Database.GetVariationRGBOfCarLabel(label, (int)car.VariationIndex);
+            Color col = Color.FromRgb((byte)(color), (byte)(color >> 8), (byte)(color >> 16));
+
+            var model = new CarEntityViewModel()
+            {
+                Index = index,
+                Name = _gt4Database.GetCarNameByCode(car.CarCode.Code),
+                Label = label,
+                Color = new SolidColorBrush(col),
+                CarData = car,
+            };
+
+            return model;
+        }
+
+        private void UpdateCurrentCarStatus()
         {
             if (Save.GameData.Profile.Garage.RidingCarIndex != -1)
             {
@@ -42,78 +194,7 @@ namespace GT4SaveEditor
             }
 
             int garageCarCount = Save.GameData.Profile.Garage.GetCarCount();
-            for (var i = 0; i < garageCarCount; i++)
-            {
-                if (Save.GameData.Profile.Garage.Cars[i].IsFreeSlot())
-                {
-                    var car = Save.GameData.Profile.Garage.Cars[i];
-                    string label = _gt4Database.GetCarLabelByCode(car.CarCode.Code);
-                    uint color = _gt4Database.GetVariationRGBOfCarLabel(label, (int)car.VariationIndex);
-                    Color col = Color.FromRgb((byte)(color), (byte)(color >> 8), (byte)(color >> 16));
-
-                    GarageCars.Add(new CarEntity()
-                    {
-                        Index = i,
-                        Name = _gt4Database.GetCarNameByCode(car.CarCode.Code),
-                        Label = label,
-                        Color = new SolidColorBrush(col),
-                        CarData = car,
-                    });
-                }
-            }
-
             gb_Garage.Header = $"Garage Cars ({garageCarCount}/1000)";
-        }
-
-        private void btn_EditCurrentCar_Click(object sender, RoutedEventArgs e)
-        {
-            if (Save.GameData.Profile.Garage.RidingCarIndex != -1)
-            {
-                var view = new CarGarageEditorWindow(Save.GameData.Profile.Garage.CurrentCar, _gt4Database);
-                view.ShowDialog();
-            }
-        }
-
-        private void mi_Garage_SetAsCurrentCar_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void mi_Garage_EditCar_Click(object sender, RoutedEventArgs e)
-        {
-            CarEntity entity = (CarEntity)lv_GarageCars.SelectedItem;
-            if (!entity.CarData.GarageDataExists)
-            {
-                MessageBox.Show("This car was never ridden, no garage data exists yet.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            var car = Save.GarageFile.GetCar((uint)entity.Index);
-            if (car is null)
-            {
-                MessageBox.Show("Failed to fetch that car from the garage file, failed to decrypt it. " +
-                    "This may be due to Float inaccuracies between PS2/PCSX2 and PC, cannot be solved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var view = new CarGarageEditorWindow(car, _gt4Database);
-            view.ShowDialog();
-
-            Save.GarageFile.PushCar(car, Save.GarageFile.UniqueID, (uint)entity.Index);
-        }
-
-        public class CarEntity
-        {
-            public Brush Color { get; set; }
-            public string Name { get; set; }
-            public string Label { get; set; }
-            public int Index { get; set; }
-            public GarageScratchUnit CarData { get; set; }
-
-            public override string ToString()
-            {
-                return $"{Name} (ID:{Index})";
-            }
         }
     }
 }
