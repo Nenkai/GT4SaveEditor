@@ -106,7 +106,7 @@ namespace GT4SaveEditor.Database
 
         public List<(int ID, string Label, string Name)> GetAllCarLabel_Code_Name()
         {
-            var res = ExecuteQuery($"SELECT RowId, Label, Name FROM CAR_NAME_american ORDER BY Name");
+            var res = ExecuteQuery($"SELECT g.RowId, g.Label, cn.Name FROM GENERIC_CAR g JOIN CAR_NAME_american cn ON g.RowId = cn.RowId ORDER BY cn.Name");
             res.Read();
 
             List<(int ID, string Label, string Name)> strs = new();
