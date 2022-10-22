@@ -52,21 +52,21 @@
 
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Calendar" Margin="359,0,120,0" Height="216" VerticalAlignment="Top">
+                                <GroupBox Header="Calendar" Margin="359,0,0,0" Height="216" VerticalAlignment="Top" HorizontalAlignment="Left" Width="409">
                                     <Grid>
                                         <Calendar Name="GameCalendar" 
                                                   SelectedDate="{Binding Save.GameData.Profile.Calendar.Date}" DisplayDate="{Binding Save.GameData.Profile.Calendar.Date}" 
-                                                  SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,10,10,10">
+                                                  SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,10,0,10" HorizontalAlignment="Left" Width="191">
                                             <Calendar.BlackoutDates>
                                                 <CalendarDateRange Start="01.01.0001" End="04.01.2005" />
                                             </Calendar.BlackoutDates>
                                         </Calendar>
 
                                         <Label Margin="10,14,309,153">Day</Label>
-                                        <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="93,13,201,152" ValueChanged="iud_CurrentDay_ValueChanged"/>
+                                        <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="93,13,0,152" ValueChanged="iud_CurrentDay_ValueChanged" HorizontalAlignment="Left" Width="103"/>
 
                                         <Label Name="lb_CurrentWeek" Margin="10,47,309,118">Week</Label>
-                                        <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="93,47,201,118" ValueChanged="iud_CurrentWeek_ValueChanged"/>
+                                        <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="93,47,0,118" ValueChanged="iud_CurrentWeek_ValueChanged" HorizontalAlignment="Left" Width="103"/>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="Context Settings (only if you know what you are doing!)" Margin="10,0,534,10" Height="142" VerticalAlignment="Bottom">
