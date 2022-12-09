@@ -17,9 +17,10 @@ namespace GT4SaveEditor.Database
         public void Load(string fileName)
         {
             var lines = File.ReadAllLines(fileName);
-            for (int i = 0; i < lines.Length; i++)
+
+            int i = 0;
+            foreach (var line in lines)
             {
-                string? line = lines[i];
                 if (string.IsNullOrEmpty(line) || line.StartsWith("//"))
                     continue;
 
@@ -34,6 +35,7 @@ namespace GT4SaveEditor.Database
                 present.Index = i;
 
                 Presents.Add(present);
+                i++;
             }
         }
     }

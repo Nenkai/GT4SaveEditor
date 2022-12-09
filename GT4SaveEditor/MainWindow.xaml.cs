@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.IO;
 
 using Ookii.Dialogs.Wpf;
 
@@ -26,7 +27,7 @@ namespace GT4SaveEditor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public string Version { get; set; } = "0.3.0";
+        public string Version { get; set; } = "0.4.0";
 
         private GT4Save _save;
         public GT4Save Save 
@@ -63,7 +64,7 @@ namespace GT4SaveEditor
         private void MenuItem_Load_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog vistaOpenFileDialog = new VistaFolderBrowserDialog();
-            vistaOpenFileDialog.Description = "Select GT4 Save Directory";
+            vistaOpenFileDialog.Description = "Select GT4 Save Directory (example: BASCUS-97436GAMEDATA)";
             vistaOpenFileDialog.UseDescriptionForTitle = true;
             if (vistaOpenFileDialog.ShowDialog() == true)
             {
@@ -90,6 +91,118 @@ namespace GT4SaveEditor
                 try
                 {
                     Save.SaveToDirectory(vistaOpenFileDialog.SelectedPath);
+                    MessageBox.Show($"Successfully saved.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load the save: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void MenuItem_Encrypt_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog vistaOpenFileDialog = new VistaFolderBrowserDialog();
+            vistaOpenFileDialog.Description = "Select GT4 Save Directory (example: BASCUS-97436GAMEDATA)";
+            vistaOpenFileDialog.UseDescriptionForTitle = true;
+            if (vistaOpenFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string gameType = GT4Save.DetectGameTypeFromSaveDirectory(vistaOpenFileDialog.SelectedPath);
+                    if (string.IsNullOrEmpty(gameType))
+                    {
+                        MessageBox.Show($"No saves found in that memory card folder.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    if (!GT4Save.GameDataRegionNames.TryGetValue(gameType, out GT4GameType type))
+                    {
+                        MessageBox.Show($"Could not detect game type for that save file.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    string encPath = System.IO.Path.Combine(vistaOpenFileDialog.SelectedPath, gameType);
+                    string decPath = encPath + ".decrypted";
+
+                    if (!File.Exists(decPath))
+                    {
+                        MessageBox.Show($"Original encrypted save file does not exist in that directory and is required to re-encrypt.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    if (!File.Exists(decPath))
+                    {
+                        MessageBox.Show($"Decrypted save file does not exist in that directory.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    byte[] encFile = File.ReadAllBytes(encPath);
+                    if (!GT4GameData.DecryptGameDataBuffer(encFile, out Memory<byte> saveBuffer, out bool useOldRandomUpdateCrypto))
+                    {
+                        MessageBox.Show($"Failed to decrypt the save.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    byte[] decFile = File.ReadAllBytes(decPath);
+                    int expectedSize = GT4GameData.GetExpectedGameDataSize(type);
+                    if (decFile.Length != expectedSize)
+                    {
+                        MessageBox.Show($"Size of decrypted file does not match expected size (0x{expectedSize:X8}). Do not remove or append bytes to the decrypted save file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    byte[] reencrypted = GT4GameData.EncryptGameDataBuffer(decFile, useOldRandomUpdateCrypto);
+                    File.WriteAllBytes(encPath, reencrypted);
+                    MessageBox.Show($"Save successfully re-encrypted to '{encPath}'.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load the save: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void MenuItem_Decrypt_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog vistaOpenFileDialog = new VistaFolderBrowserDialog();
+            vistaOpenFileDialog.Description = "Select GT4 Save Directory (example: BASCUS-97436GAMEDATA)";
+            vistaOpenFileDialog.UseDescriptionForTitle = true;
+            if (vistaOpenFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string gameType = GT4Save.DetectGameTypeFromSaveDirectory(vistaOpenFileDialog.SelectedPath);
+                    if (string.IsNullOrEmpty(gameType))
+                    {
+                        MessageBox.Show($"No saves found in that memory card folder.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    string encPath = System.IO.Path.Combine(vistaOpenFileDialog.SelectedPath, gameType);
+                    if (!File.Exists(encPath))
+                    {
+                        MessageBox.Show($"Game Data file does not exist (file is usually named the same as the folder)", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    byte[] file = File.ReadAllBytes(encPath);
+                    if (GT4GameData.DecryptGameDataBuffer(file, out Memory<byte> saveBuffer, out _))
+                    {
+                        string decPath = System.IO.Path.Combine(vistaOpenFileDialog.SelectedPath, gameType + ".decrypted");
+                        File.WriteAllBytes(decPath, saveBuffer.ToArray());
+                        MessageBox.Show($"Save successfully decrypted to '{decPath}'.\n\n\n" +
+                            "Important Notes!\n" +
+                            "- The garage file cannot be decrypted as it depends on shuffled crypto which might differ between hardware.\n\n" +
+                            "- When re-encrypting, keep the original file in the directory and keep all file names including decrypted files identical.\n\n" +
+                            "- Do not remove or append bytes to the decrypted file.", 
+                            "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Failed to decrypt the save.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
                 catch (Exception ex)
                 {

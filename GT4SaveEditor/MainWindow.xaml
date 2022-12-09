@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:GT4SaveEditor"
         mc:Ignorable="d"
-        Title="GT4 Save Editor" Height="600" Width="900"
+        Title="GT4 Save Editor" Height="613" Width="900"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Loaded="Window_Loaded">
     <Grid>
@@ -15,6 +15,9 @@
                 <MenuItem Header="File">
                     <MenuItem Header="_Load" Name="MenuItem_Load" Click="MenuItem_Load_Click"/>
                     <MenuItem Header="_Save" Name="MenuItem_Save" IsEnabled="False" Click="MenuItem_Save_Click"/>
+                    <Separator/>
+                    <MenuItem Header="_Encrypt Save" Name="MenuItem_Encrypt" Click="MenuItem_Encrypt_Click"/>
+                    <MenuItem Header="_Decrypt Save" Name="MenuItem_Decrypt" Click="MenuItem_Decrypt_Click"/>
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
@@ -52,24 +55,24 @@
 
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Calendar" Margin="359,0,0,0" Height="216" VerticalAlignment="Top" HorizontalAlignment="Left" Width="409">
+                                <GroupBox Header="Calendar" Margin="359,0,0,0" Height="216" VerticalAlignment="Top" HorizontalAlignment="Left" Width="519">
                                     <Grid>
                                         <Calendar Name="GameCalendar" 
                                                   SelectedDate="{Binding Save.GameData.Profile.Calendar.Date}" DisplayDate="{Binding Save.GameData.Profile.Calendar.Date}" 
-                                                  SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,10,0,10" HorizontalAlignment="Left" Width="191">
+                                                  SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="306,10,0,10" HorizontalAlignment="Left" Width="191">
                                             <Calendar.BlackoutDates>
                                                 <CalendarDateRange Start="01.01.0001" End="04.01.2005" />
                                             </Calendar.BlackoutDates>
                                         </Calendar>
 
-                                        <Label Margin="10,14,309,153">Day</Label>
-                                        <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="93,13,0,152" ValueChanged="iud_CurrentDay_ValueChanged" HorizontalAlignment="Left" Width="103"/>
+                                        <Label Margin="139,14,309,153">Day</Label>
+                                        <xctk:IntegerUpDown Name="iud_CurrentDay" Margin="0,14,0,151" ValueChanged="iud_CurrentDay_ValueChanged" HorizontalAlignment="Center" Width="103"/>
 
-                                        <Label Name="lb_CurrentWeek" Margin="10,47,309,118">Week</Label>
-                                        <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="93,47,0,118" ValueChanged="iud_CurrentWeek_ValueChanged" HorizontalAlignment="Left" Width="103"/>
+                                        <Label Name="lb_CurrentWeek" Margin="139,47,309,118">Week</Label>
+                                        <xctk:IntegerUpDown Name="iud_CurrentWeek" Margin="0,47,0,118" ValueChanged="iud_CurrentWeek_ValueChanged" HorizontalAlignment="Center" Width="103"/>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Context Settings (only if you know what you are doing!)" Margin="10,0,534,10" Height="142" VerticalAlignment="Bottom">
+                                <GroupBox Header="Context Settings (only if you know what you are doing!)" Margin="10,0,0,10" Height="142" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="344">
                                     <Grid>
                                         <Label Margin="10,10,241,80">Project</Label>
                                         <TextBox MaxLength="32" Margin="96,12,10,80" VerticalContentAlignment="Center" Text="{Binding Save.GameData.Context.MajorProject}" />
@@ -79,30 +82,87 @@
                                     </Grid>
 
                                 </GroupBox>
+                                <GroupBox Header="Gold all Licenses (unimplemented)" Margin="359,221,0,0" Height="84" VerticalAlignment="Top" HorizontalAlignment="Left" Width="251" IsEnabled="False">
+                                    <Grid>
+                                        <Button Content="B" Width="40" Margin="12,10,0,0" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top"/>
+                                        <Button Content="A" Width="40" Margin="56,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="IB" Width="40" Margin="101,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="IA" Width="40" Margin="146,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="S" Width="40" Margin="191,10,0,0" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top"/>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Complete Missions (unimplemented)" Margin="359,310,0,0" Height="84" VerticalAlignment="Top" HorizontalAlignment="Left" Width="251" IsEnabled="False">
+                                    <Grid>
+                                        <Button Content="1-10" Width="40" Margin="12,10,0,0" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top"/>
+                                        <Button Content="11-20" Width="40" Margin="56,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="21-24" Width="40" Margin="101,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="25-29" Width="40" Margin="146,10,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Button Content="30-34" Width="40" Margin="191,10,0,0" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top"/>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Complete Events (unimplemented)" Margin="615,221,0,0" Height="279" VerticalAlignment="Top" HorizontalAlignment="Left" Width="263" IsEnabled="False">
+                                    <Grid>
+                                        <Button Content="All Beginner" Width="230" Height="30" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Intermediate" Width="230" Height="30" Margin="0,45,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Professional" Width="230" Height="30" Margin="0,80,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Extreme" Width="230" Height="30" Margin="0,115,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Endurance" Width="230" Height="30" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Special Conditions" Width="230" Height="30" Margin="0,185,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <Button Content="All Manufacturer Events" Width="230" Height="30" Margin="0,220,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                                    </Grid>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Events">
                             <Grid>
                                 <GroupBox Header="Categories" HorizontalAlignment="Left" Width="311">
                                     <ListBox Name="lb_Categories" SelectionChanged="lb_Categories_SelectionChanged">
-
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Set category as all 1st (Regular Events)" Click="lb_Categories_SetCategoryAllFirstEvents_Click"/>
+                                                <MenuItem Header="Set category as all Gold (Licenses)" Click="lb_Categories_SetCategoryAllGoldLicenses_Click"/>
+                                                <MenuItem Header="Set category as all Gold (Missions) with 250 A-Spec Points" Click="lb_Categories_SetCategoryAllGoldMissions_Click"/>
+                                                <Separator/>
+                                                <MenuItem Header="Reset category progression" Click="lb_Categories_Reset_Click"/>
+                                                <MenuItem Header="Reset category progression (but keep A-Spec Points)" Click="lb_Categories_ResetKeepAspec_Click"/>
+                                                <Separator/>
+                                                <MenuItem Header="Set all category events to 0 A-Spec Points" Click="lb_Categories_SetAll0Points_Click"/>
+                                                <MenuItem Header="Set all category events to 200 A-Spec Points (Legal Maximum)" Click="lb_Categories_SetAll200Points_Click"/>
+                                                <MenuItem Header="Set all category events to 254 A-Spec Points (Illegal Maximum))" Click="lb_Categories_SetAll254Points_Click"/>
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
                                     </ListBox>
                                 </GroupBox>
-                                <GroupBox Header="Events" HorizontalAlignment="Left" Width="306" Margin="316,0,0,0">
+                                <GroupBox Header="Events" HorizontalAlignment="Left" Width="234" Margin="316,0,0,0">
                                     <ListBox Name="lb_Events" SelectionChanged="lb_Events_SelectionChanged">
-
+                                        <ListBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Set as 1st in Regular Event" Click="lb_Events_SetAsEvent1st_Click"/>
+                                                <MenuItem Header="Set as Golded License" Click="lb_Events_SetAsGoldedLicense_Click"/>
+                                                <MenuItem Header="Set as Golded Mission (with 250 A-Spec Points)" Click="lb_Events_SetAsMission1st_Click"/>
+                                                <Separator/>
+                                                <MenuItem Header="Reset category progression" Click="lb_Events_Reset_Click"/>
+                                            </ContextMenu>
+                                        </ListBox.ContextMenu>
                                     </ListBox>
                                 </GroupBox>
-                                <GroupBox Name="gb_EventResultSettings" IsEnabled="false" Header="Result Settings" Margin="627,10,10,0" Height="244" VerticalAlignment="Top">
+                                <GroupBox Name="gb_EventResultSettings" IsEnabled="false" Header="Result Settings" Margin="555,10,0,0" Height="244" VerticalAlignment="Top" HorizontalAlignment="Left" Width="323">
                                     <Grid>
-                                        <Label Content="Permanent Result" Margin="10,7,110,182"/>
-                                        <ComboBox Name="cb_EventResult" Margin="129,10,10,188" SelectionChanged="cb_EventResult_SelectionChanged"/>
+                                        <Label Content="Event Type" Margin="10,7,110,182"/>
+                                        <ComboBox Name="cb_EventType" Margin="152,10,10,188" SelectionChanged="cb_EventType_SelectionChanged"/>
 
-                                        <Label Content="Current Result" Margin="10,42,120,147"/>
-                                        <ComboBox Name="cb_EventCurrentResult" Margin="129,46,10,152" SelectionChanged="cb_EventCurrentResult_SelectionChanged"/>
+                                        <Label Content="Permanent Result" Margin="10,39,110,150"/>
+                                        <ComboBox Name="cb_EventResult" Margin="152,42,10,156" SelectionChanged="cb_EventResult_SelectionChanged"/>
 
-                                        <Label Content="A-Spec Points" Margin="10,76,92,112"/>
-                                        <xctk:ByteUpDown Name="ByteUpDown_EventAspecPoints" Margin="152,79,10,119" ValueChanged="ByteUpDown_EventAspecPoints_ValueChanged"/>
+                                        <Label Content="Event Current Result" Margin="10,69,110,120"/>
+                                        <ComboBox Name="cb_EventCurrentResult" Margin="152,73,10,125" SelectionChanged="cb_EventCurrentResult_SelectionChanged"/>
+
+                                        <Label Content="License/Mission Result" Margin="10,99,110,90"/>
+                                        <ComboBox Name="cb_EventLicenseOrMissionResult" Margin="152,103,10,95" SelectionChanged="cb_EventLicenseOrMissionResult_SelectionChanged"/>
+
+                                        <Label Content="A-Spec Points" Margin="10,129,92,60"/>
+                                        <xctk:ByteUpDown Name="ByteUpDown_EventAspecPoints" Margin="152,134,10,64" ValueChanged="ByteUpDown_EventAspecPoints_ValueChanged"/>
 
                                     </Grid>
                                 </GroupBox>
@@ -184,7 +244,9 @@
                                 </Grid>
                                 <Grid Height="40" VerticalAlignment="Bottom">
                                     <TextBlock FontSize="13" TextAlignment="Center" TextWrapping="Wrap">
-                                        These will not have any effect if the event results are not toggled! To unlock courses increase the current week! (One course is unlocked every 2 weeks, up until 50th)
+                                        These are just the unlock flags for the game to check if a prize was already given. Use the Events tab to set progression and licenses.
+                                        <LineBreak />
+                                        To unlock courses increase the current week! (One course is unlocked every 2 weeks, up until 50th)
                                     </TextBlock>
                                 </Grid>
                             </Grid>
