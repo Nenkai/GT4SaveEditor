@@ -19,8 +19,10 @@ Allows editing game options and money at the moment.
 - [x] Stats Editing
 - [ ] Buttons to quickly set overall progress
 
-## ⚠️ Note regarding the garage
+## ⚠️ Important Notes
 
-Not all cars can be decrypted correctly, as the game uses shuffling during decryption of cars which involves non IEEE-754 compliant PS2 floating points that cannot be accurately replicated. Nothing can truly be done about it.
+Not all cars can be decrypted correctly, as the game uses shuffling during decryption of cars which involves non IEEE-754 compliant PS2 floating points that cannot be accurately replicated. Nothing can truly be done about it. 
 
 Workaround is to ride the car you want to edit before doing so, as those are not encrypted.
+
+### ⚠️ It also implies that changing Clamping/Rounding settings within PCSX2 may corrupt the save! Be aware! ⚠️ 
