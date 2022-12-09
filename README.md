@@ -1,10 +1,8 @@
 # GT4SaveEditor
 
-Work in progress.
+Save Editor for Gran Turismo 4. Allows progress editing, car editing, hybridding and more.
 
 Decrypts and encrypts the countless layers of save encryptions. Only took 18 years.
-
-Allows editing game options and money at the moment.
 
 ## Features & Roadmap
 
