@@ -10,28 +10,35 @@ namespace GT4SaveEditor.Database
     public class GT4Database
     {
         private SQLiteConnection _sConn;
-        private string _fileName;
+        public string FileName { get; set; }
+
+        public bool Connected { get; set; }
 
         public GT4Database()
         {
 
         }
 
+
         public bool CreateConnection(string fileName)
         {
-            if (fileName == _fileName)
+            if (fileName == FileName)
                 return true; // Already loaded
 
+            FileName = fileName;
             _sConn = new SQLiteConnection($"Data Source={fileName};Version=3;New=False;Compress=True;");
 
             try
             {
                 _sConn.Open();
+                Connected = true;
             }
             catch (Exception e)
             {
+                Connected = false;
                 return false;
             }
+
             return true;
         }
 

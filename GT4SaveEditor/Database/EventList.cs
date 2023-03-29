@@ -38,7 +38,7 @@ namespace GT4SaveEditor.Database
             }
         }
 
-        public void LoadEventIndices(GT4GameType type, GT4Database database)
+        public void LoadEventIndices(GT4SaveType type, GT4Database database)
         {
             foreach (EventCategory category in Categories)
             {
@@ -52,18 +52,18 @@ namespace GT4SaveEditor.Database
                     {
                         switch (type)
                         {
-                            case GT4GameType.GT4_EU:
+                            case GT4SaveType.GT4_EU:
                                 label = "uk" + label;
                                 break;
-                            case GT4GameType.GT4_US:
-                            case GT4GameType.GT4O_US:
+                            case GT4SaveType.GT4_US:
+                            case GT4SaveType.GT4O_US:
                                 label = "us" + label;
                                 break;
-                            case GT4GameType.GT4_JP:
-                            case GT4GameType.GT4O_JP:
+                            case GT4SaveType.GT4_JP:
+                            case GT4SaveType.GT4O_JP:
                                 label = "jp" + label;
                                 break;
-                            case GT4GameType.GT4_KR:
+                            case GT4SaveType.GT4_KR:
                                 label = "kr" + label;
                                 break;
                         }

@@ -34,7 +34,7 @@ namespace GT4SaveEditor
     {
         public static ObservableCollection<CarEntityViewModel> GameCars { get; set; } = new ObservableCollection<CarEntityViewModel>();
 
-        public static GT4GameType LoadedGameType { get; set; }
+        public static GT4SaveType LoadedGameType { get; set; }
 
         public string SelectedLabel { get; set; }
         public int SelectedCarCode { get; set; }

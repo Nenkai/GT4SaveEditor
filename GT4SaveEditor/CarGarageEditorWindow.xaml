@@ -20,94 +20,105 @@
             </TabControl>
             <Grid DockPanel.Dock="Bottom">
                 <GroupBox Header="Car Parts" Margin="10,0,0,0" HorizontalAlignment="Left" Width="341" Height="523" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Width="100">
-                            <Grid Height="7"/>
-                            <Label Content="Brake" Height="30"/>
-                            <Label Content="Brake Controller" Height="30"/>
-                            <Label Content="Chassis" Height="30"/>
-                            <Label Content="Engine" Height="30"/>
-                            <Label Content="Drivetrain" Height="30"/>
-                            <Label Content="Gear" Height="30"/>
-                            <Label Content="Suspension" Height="30"/>
-                            <Label Content="LSD" Height="30"/>
-                            <Label Content="Front Tire" Height="30"/>
-                            <Label Content="Rear Tire" Height="30"/>
-                            <Label Content="Steer" Height="30"/>
-                            <Label Content="Lightweight" Height="30"/>
-                            <Label Content="Racing Modify" Height="30"/>
-                            <Label Content="Portpolish" Height="30"/>
-                            <Label Content="Engine Balance" Height="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="65">
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type xctk:IntegerUpDown}">
-                                    <Setter Property="Margin" Value="0,10,0,0"/>
-                                </Style>
-                            </StackPanel.Resources>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Brake}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.BrakeController}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Chassis}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Engine}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Drivetrain}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Gear}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Suspension}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.LSD}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.FrontTire}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.RearTire}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Steer}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Lightweight}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.RacingModify}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Portpolish}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.EngineBalance}"/>
-                        </StackPanel>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Width="100">
+                                <Grid Height="7"/>
+                                <Label Content="Brake" Height="30"/>
+                                <Label Content="Brake Controller" Height="30"/>
+                                <Label Content="Chassis" Height="30"/>
+                                <Label Content="Engine" Height="30"/>
+                                <Label Content="Drivetrain" Height="30"/>
+                                <Label Content="Gear" Height="30"/>
+                                <Label Content="Suspension" Height="30"/>
+                                <Label Content="LSD" Height="30"/>
+                                <Label Content="Front Tire" Height="30"/>
+                                <Label Content="Rear Tire" Height="30"/>
+                                <Label Content="Steer" Height="30"/>
+                                <Label Content="Lightweight" Height="30"/>
+                                <Label Content="Racing Modify" Height="30"/>
+                                <Label Content="Portpolish" Height="30"/>
+                                <Label Content="Engine Balance" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="65">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                        <Setter Property="Margin" Value="0,10,0,0"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Brake}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.BrakeController}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Chassis}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Engine}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Drivetrain}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Gear}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Suspension}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.LSD}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.FrontTire}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.RearTire}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Steer}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Lightweight}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.RacingModify}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Portpolish}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.EngineBalance}"/>
+                            </StackPanel>
 
-                        <StackPanel Width="3"/>
-                        <!-- Cheesy margin -->
-                        <StackPanel Orientation="Vertical" Width="90" HorizontalAlignment="Center">
-                            <Grid Height="7"/>
-                            <Label Content="Displacement" Height="30"/>
-                            <Label Content="Computer" Height="30"/>
-                            <Label Content="NATune" Height="30"/>
-                            <Label Content="Turbine Kit" Height="30"/>
-                            <Label Content="Flywheel" Height="30"/>
-                            <Label Content="Clutch" Height="30"/>
-                            <Label Content="Propeller Shaft" Height="30"/>
-                            <Label Content="Muffler" Height="30"/>
-                            <Label Content="Intercooler" Height="30"/>
-                            <Label Content="ASCC" Height="30"/>
-                            <Label Content="TCSC" Height="30"/>
-                            <Label Content="Wheel" Height="30"/>
-                            <Label Content="NOS" Height="30"/>
-                            <Label Content="Wing" Height="30"/>
-                            <Label Content="Supercharger" Height="30"/>
+                            <StackPanel Width="3"/>
+                            <!-- Cheesy margin -->
+                            <StackPanel Orientation="Vertical" Width="90" HorizontalAlignment="Center">
+                                <Grid Height="7"/>
+                                <Label Content="Displacement" Height="30"/>
+                                <Label Content="Computer" Height="30"/>
+                                <Label Content="NATune" Height="30"/>
+                                <Label Content="Turbine Kit" Height="30"/>
+                                <Label Content="Flywheel" Height="30"/>
+                                <Label Content="Clutch" Height="30"/>
+                                <Label Content="Propeller Shaft" Height="30"/>
+                                <Label Content="Muffler" Height="30"/>
+                                <Label Content="Intercooler" Height="30"/>
+                                <Label Content="ASCC" Height="30"/>
+                                <Label Content="TCSC" Height="30"/>
+                                <Label Content="Wheel" Height="30"/>
+                                <Label Content="NOS" Height="30"/>
+                                <Label Content="Wing" Height="30"/>
+                                <Label Content="Supercharger" Height="30"/>
 
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="65">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                        <Setter Property="Margin" Value="0,10,0,0"/>
+                                    </Style>
+                                </StackPanel.Resources>
+
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Displacement}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Computer}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Natune}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.TurbineKit}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Flywheel}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Clutch}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.PropellerShaft}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Muffler}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Intercooler}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.ASCC}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.TCSC}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Wheel}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.NOS}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.Wing}"/>
+                                <xctk:IntegerUpDown Value="{Binding CurrentSheet.SuperCharger}"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="65">
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type xctk:IntegerUpDown}">
-                                    <Setter Property="Margin" Value="0,10,0,0"/>
-                                </Style>
-                            </StackPanel.Resources>
-
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Displacement}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Computer}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Natune}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.TurbineKit}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Flywheel}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Clutch}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.PropellerShaft}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Muffler}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Intercooler}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.ASCC}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.TCSC}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Wheel}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.NOS}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.Wing}"/>
-                            <xctk:IntegerUpDown Value="{Binding CurrentSheet.SuperCharger}"/>
-                        </StackPanel>
-                    </StackPanel>
-
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="6,458,4,0">
+                            To find Car Parts IDs, download
+                            <Hyperlink NavigateUri="https://github.com/pawelsalawa/sqlitestudio/releases" RequestNavigate="Hyperlink_RequestNavigate">
+                                SQLite Studio
+                            </Hyperlink>
+                            then open the corresponding database file from the
+                            <Hyperlink Name="HyperLink_DatabaseFile" RequestNavigate="Hyperlink_DatabaseFileRequestNavigate">
+                            databases folder.
+                            </Hyperlink>
+                        </TextBlock>
+                    </Grid>
                 </GroupBox>
                 <GroupBox Header="Gear Ratios" Margin="356,0,0,0" HorizontalAlignment="Left" Width="186" Height="523" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
@@ -237,11 +248,11 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="LSD Settings" Margin="547,393,0,0" HorizontalAlignment="Left" Width="310" Height="130" VerticalAlignment="Top">
+                <GroupBox Header="LSD/Limited-slip Differential Settings" Margin="547,393,0,0" HorizontalAlignment="Left" Width="310" Height="130" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" Width="90">
                             <Grid Height="7"/>
-                            <Label Content="Front Initial" Height="30"/>
+                            <Label Content="Front Initial Tq." Height="30"/>
                             <Label Content="Front Accel" Height="30"/>
                             <Label Content="Front Decel" Height="30"/>
                         </StackPanel>
@@ -251,16 +262,16 @@
                                     <Setter Property="Margin" Value="0,10,0,0"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam1}"/>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam2}"/>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDFrontParam3}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_FrontTrq}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_FrontAccel}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_FrontDecel}"/>
                         </StackPanel>
                         <StackPanel Width="3"/>
                         <!-- Margin -->
 
                         <StackPanel Orientation="Vertical" Width="90">
                             <Grid Height="7"/>
-                            <Label Content="Rear Initial" Height="30"/>
+                            <Label Content="Rear Initial Tq." Height="30"/>
                             <Label Content="Rear Accel" Height="30"/>
                             <Label Content="Rear Decel" Height="30"/>
                         </StackPanel>
@@ -270,9 +281,9 @@
                                     <Setter Property="Margin" Value="0,10,0,0"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam1}"/>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam2}"/>
-                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDRearParam3}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_RearTrq}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_RearAccel}"/>
+                            <xctk:ByteUpDown Value="{Binding CurrentSheet.LSDParam_RearDecel}"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -337,6 +348,7 @@
                     </StackPanel>
 
                 </GroupBox>
+
             </Grid>
         </DockPanel>
     </Grid>

@@ -15,6 +15,7 @@
                 <MenuItem Header="File">
                     <MenuItem Header="_Load" Name="MenuItem_Load" Click="MenuItem_Load_Click"/>
                     <MenuItem Header="_Save" Name="MenuItem_Save" IsEnabled="False" Click="MenuItem_Save_Click"/>
+                    <MenuItem Header="_Save To Another Region" Name="MenuItem_SaveToAnotherRegion" IsEnabled="False" Click="MenuItem_SaveToAnotherRegion_Click"/>
                     <Separator/>
                     <MenuItem Header="_Encrypt Save" Name="MenuItem_Encrypt" Click="MenuItem_Encrypt_Click"/>
                     <MenuItem Header="_Decrypt Save" Name="MenuItem_Decrypt" Click="MenuItem_Decrypt_Click"/>
@@ -33,10 +34,10 @@
                                 <GroupBox Header="Profile Settings" Margin="10,0,0,157" HorizontalAlignment="Left" Width="344">
                                     <Grid>
                                         <Label VerticalAlignment="Top" Margin="10,9,218,0">Player Name</Label>
-                                        <TextBox VerticalAlignment="Top" Name="label_ProfileName" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,15,10,0"/>
+                                        <TextBox VerticalAlignment="Top" Name="label_ProfileName" TextChanged="label_ProfileName_TextChanged" MaxLength="32" Text="{Binding Save.GameData.Profile.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,15,10,0"/>
 
                                         <Label VerticalAlignment="Top" Margin="10,42,232,0">Credits</Label>
-                                        <xctk:ULongUpDown Increment="10000" Margin="100,47,10,0" VerticalAlignment="Top" Value="{Binding Save.GarageFile.Money}"/>
+                                        <xctk:ULongUpDown Increment="10000" Margin="100,47,10,0" VerticalAlignment="Top" ValueChanged="upd_Money_ValueChanged" Value="{Binding Save.GarageFile.Money}"/>
 
                                         <Label VerticalAlignment="Top" Margin="10,76,195,0">Total Prize Money</Label>
                                         <xctk:LongUpDown Margin="151,81,10,0" VerticalAlignment="Top" Value="{Binding Save.GameData.Profile.TotalPrizeMoney}"/>
@@ -116,7 +117,7 @@
                         </TabItem>
                         <TabItem Header="Events">
                             <Grid>
-                                <GroupBox Header="Categories" HorizontalAlignment="Left" Width="311">
+                                <GroupBox Header="Categories (Right click category/events for shortcuts)" HorizontalAlignment="Left" Width="311">
                                     <ListBox Name="lb_Categories" SelectionChanged="lb_Categories_SelectionChanged">
                                         <ListBox.ContextMenu>
                                             <ContextMenu>

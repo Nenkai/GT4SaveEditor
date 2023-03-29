@@ -76,6 +76,7 @@ namespace GT4SaveEditor
             }
 
             UpdateCurrentCarStatus();
+            UpdateTitle();
         }
 
         private void btn_Garage_AddCar_Click(object sender, RoutedEventArgs e)
@@ -83,10 +84,10 @@ namespace GT4SaveEditor
             if (Save.GameData.Profile.Garage.IsFull())
                 return; // This button should be disabled, but just incase
 
-            if (Save.GameType != CarPickerWindow.LoadedGameType)
+            if (Save.Type != CarPickerWindow.LoadedGameType)
             {
                 CarPickerWindow.InitCarListing(_gt4Database);
-                CarPickerWindow.LoadedGameType = Save.GameType;
+                CarPickerWindow.LoadedGameType = Save.Type;
             }
 
             var view = new CarPickerWindow(_gt4Database);
@@ -113,6 +114,7 @@ namespace GT4SaveEditor
             GarageCars.Add(entity);
 
             UpdateCurrentCarStatus();
+            UpdateTitle();
         }
 
         private void btn_Garage_AddAllMissingCars_Click(object sender, RoutedEventArgs e)
@@ -143,6 +145,8 @@ namespace GT4SaveEditor
                     added++;
                 }
             }
+
+            UpdateTitle();
         }
 
 
@@ -152,13 +156,13 @@ namespace GT4SaveEditor
                 MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
 
-            for (var i = 0; i < Save.GameData.Profile.Garage.Cars.Length; i++)
-                Save.GameData.Profile.Garage.Cars[i].IsSlotTaken = false;
-
+            Save.GameData.Profile.Garage.Clear();
             Save.GameData.Profile.Garage.RidingCarIndex = -1;
 
             GarageCars.Clear();
             UpdateCurrentCarStatus();
+
+            UpdateTitle();
         }
 
         private CarEntityViewModel CreateGarageCarModel(int index, GarageScratchUnit car)

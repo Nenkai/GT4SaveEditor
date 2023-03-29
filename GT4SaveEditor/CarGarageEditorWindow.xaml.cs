@@ -16,6 +16,9 @@ using System.ComponentModel;
 using PDTools.Structures;
 using PDTools.Structures.PS2;
 using GT4SaveEditor.Database;
+using System.Windows.Navigation;
+using System.Diagnostics;
+using System.IO;
 
 namespace GT4SaveEditor
 {
@@ -36,6 +39,10 @@ namespace GT4SaveEditor
 
             InitializeComponent();
 
+            string dir = System.IO.Path.GetFullPath(_db.FileName);
+            dir = System.IO.Path.GetDirectoryName(dir);
+
+            HyperLink_DatabaseFile.NavigateUri = new Uri($"file://{dir}");
             lb_CarName.Content = db.GetCarNameByCode(car.Sheets[0].CarCode.Code);
         }
 
@@ -45,6 +52,16 @@ namespace GT4SaveEditor
             {
                 CurrentSheet = new(Car.Sheets[tabControl.SelectedIndex]);
             }
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = e.Uri.ToString(), UseShellExecute = true });
+        }
+
+        private void Hyperlink_DatabaseFileRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = e.Uri.ToString(), UseShellExecute = true });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -137,12 +154,12 @@ namespace GT4SaveEditor
             public byte FrontSpringRateLevel { get => _current.Susp_FrontSpringRateLevel; set => _current.Susp_FrontSpringRateLevel = value; }
             public byte RearSpringRateLevel { get => _current.Susp_RearSpringRateLevel; set => _current.Susp_RearSpringRateLevel = value; }
 
-            public byte LSDFrontParam1 { get => _current.FrontLSDparam; set => _current.FrontLSDparam = value; }
-            public byte LSDFrontParam3 { get => _current.FrontLSDparam2; set => _current.FrontLSDparam2 = value; }
-            public byte LSDFrontParam2 { get => _current.FrontLSDparam3; set => _current.FrontLSDparam3 = value; }
-            public byte LSDRearParam1 { get => _current.RearLSDparam; set => _current.RearLSDparam = value; }
-            public byte LSDRearParam2 { get => _current.RearLSDparam2; set => _current.RearLSDparam2 = value; }
-            public byte LSDRearParam3 { get => _current.RearLSDparam3; set => _current.RearLSDparam3 = value; }
+            public byte LSDParam_FrontTrq { get => _current.LSDParam_FrontTorque; set => _current.LSDParam_FrontTorque = value; }
+            public byte LSDParam_RearTrq { get => _current.LSDParam_RearTorque; set => _current.LSDParam_RearTorque = value; }
+            public byte LSDParam_FrontAccel { get => _current.LSDParam_FrontAccel; set => _current.LSDParam_FrontAccel = value; }
+            public byte LSDParam_RearAccel { get => _current.LSDParam_RearAccel; set => _current.LSDParam_RearAccel = value; }
+            public byte LSDParam_FrontDecel { get => _current.LSDParam_FrontDecel; set => _current.LSDParam_FrontDecel = value; }
+            public byte LSDParam_RearDecel { get => _current.LSDParam_RearDecel; set => _current.LSDParam_RearDecel = value; }
 
             public byte TurboBoost1 { get => _current.Turbo_Boost1; set => _current.Turbo_Boost1 = value; }
             public byte TurboPeakRPM1 { get => _current.Turbo_PeakRPM1; set => _current.Turbo_PeakRPM1 = value; }

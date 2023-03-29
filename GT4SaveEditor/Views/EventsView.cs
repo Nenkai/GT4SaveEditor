@@ -150,7 +150,7 @@ namespace GT4SaveEditor
                 cb_EventType.SelectedIndex = (int)EventType.Event;
                 cb_EventResult.SelectedIndex = (int)Result._1;
                 cb_EventCurrentResult.SelectedIndex = (int)Result._1;
-                cb_EventLicenseOrMissionResult.SelectedIndex = (int)Result.none;
+                cb_EventLicenseOrMissionResult.SelectedIndex = (int)Result._1;
             }
         }
 
@@ -290,12 +290,12 @@ namespace GT4SaveEditor
             RaceRecordUnit unit = Save.GameData.Profile.RaceRecords.Records[@event.DbIndex];
             unit.SetEventType(EventType.Event);
             unit.SetPermanentResult(Result._1);
-            unit.SetLicenseOrMissionResult(Result.none);
+            unit.SetLicenseOrMissionResult(Result._1);
             unit.SetCurrentResult(Result._1);
 
             cb_EventResult.SelectedIndex = (int)Result._1;
             cb_EventCurrentResult.SelectedIndex = (int)Result._1;
-            cb_EventLicenseOrMissionResult.SelectedIndex = (int)Result.none;
+            cb_EventLicenseOrMissionResult.SelectedIndex = (int)Result._1;
             cb_EventType.SelectedIndex = (int)EventType.Event;
         }
 
@@ -404,7 +404,7 @@ namespace GT4SaveEditor
 
                 if (eventType == EventType.Event)
                 {
-                    unit.SetLicenseOrMissionResult(Result.none);
+                    unit.SetLicenseOrMissionResult(Result._1);
                     unit.SetCurrentResult(result);
                 }
                 else if (eventType != EventType.None)
