@@ -20,6 +20,8 @@ namespace GT4SaveEditor.Database
 
             Region = region;
 
+            WeeklyLineups.Clear();
+
             string[] lines = File.ReadAllLines(region);
 
             string currentCategory = "";
