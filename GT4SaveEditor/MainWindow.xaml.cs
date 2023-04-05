@@ -127,16 +127,18 @@ namespace GT4SaveEditor
                 return;
             }
 
-            if (MessageBox.Show($"Converting a save to another region will do the minimum to ensure that it will work for the specified region.\n\n" +
-                    $"However, it may still break in certain cases (i.e using a car that doesn't exist in another region), so proceed with caution.\n" +
-                    $"It is your responsibility if the game breaks in weird ways, it is expected on larger saves. Proceed?", "Warning",
+            if (MessageBox.Show($"Converting a save to another region will do the minimum to ensure that it will work for the specified region.\n" +
+                    $"Cars that do not exist in one region will appear blank in the garage and crash the game if clicked, remove them with the save editor to fix that.\n\n" +
+
+                    $"However, it may still break in certain cases, so proceed with caution.\n\n" +
+                    $"It is *your* responsibility if the game breaks in weird ways, it is expected on larger saves.\n\nProceed?", "Warning",
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
                 return;
 
             if ((GT4Save.IsGT4Online(type) != GT4Save.IsGT4Online(Save.Type)))
             {
-                if (MessageBox.Show($"You are trying to convert from GT4<->GT4O.\n" +
-                    $"Since the garage file cannot be decrypted correctly, all car data (tuning) will need to be deleted from the new save. Proceed?", "Hmm",
+                if (MessageBox.Show($"You are trying to convert from/to GT4<->GT4O.\n" +
+                    $"Since the garage file cannot be decrypted correctly (thank PS2 floats), all car data (tuning) will need to be deleted from the new save.\n\nProceed?", "Hmm",
                     MessageBoxButton.YesNo, MessageBoxImage.Information) != MessageBoxResult.Yes)
                     return;
             }

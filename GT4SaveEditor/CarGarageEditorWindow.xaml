@@ -11,7 +11,32 @@
         WindowStartupLocation="CenterOwner"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
-        <Label Name="lb_CarName" FontWeight="Bold" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="583" Height="57" VerticalAlignment="Top" Margin="10,0,0,0"/>
+        <Grid Height="79" VerticalAlignment="Top">
+            <Label Name="lb_CarName" FontWeight="Bold" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="583" Height="57" VerticalAlignment="Top" Margin="10,0,0,0"/>
+            <GroupBox Header="Status (Engine/Oil/Body is in Meters, Everlasting disables condition build-up)" Margin="520,0,0,0" HorizontalAlignment="Left" Width="520" Height="79" VerticalAlignment="Center">
+                <Grid>
+                    <Label Margin="0,2,437,28" Content="Engine Life" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:SingleUpDown Value="{Binding Car.Status.EngineLife}" Margin="0,6,349,30" HorizontalAlignment="Right" Width="81"/>
+
+                    <Label Margin="0,28,437,2" Content="Oil Life" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:SingleUpDown Value="{Binding Car.Status.OilLife}" Margin="0,31,349,4" HorizontalAlignment="Right" Width="81"/>
+
+                    <Label Margin="0,2,269,28" Content="Body Life" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:SingleUpDown Value="{Binding Car.Status.BodyLife}" Margin="0,6,183,30" HorizontalAlignment="Right" Width="81"/>
+
+                    <Label Margin="0,28,269,2" Content="Dirtiness" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:SingleUpDown Value="{Binding Car.Status.Dirtiness}" Margin="0,31,183,4" HorizontalAlignment="Right" Width="81"/>
+
+                    <Label Margin="0,2,96,28" Content="Odometer" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:UIntegerUpDown Value="{Binding Car.Status.Odometer}" Margin="0,6,10,30" HorizontalAlignment="Right" Width="81"/>
+
+                    <Label Margin="0,28,96,2" Content="Everlasting" HorizontalAlignment="Right" Width="71"/>
+                    <xctk:ByteUpDown Value="{Binding Car.Status.Everlasting}" Margin="0,31,10,4" HorizontalAlignment="Right" Width="81"/>
+                </Grid>
+
+            </GroupBox>
+        </Grid>
+
         <DockPanel Margin="0,62,0,0">
             <TabControl DockPanel.Dock="Top" TabStripPlacement= "Top" IsTabStop="False" Height="23" SelectionChanged="TabControl_SelectionChanged">
                 <TabItem Header="Sheet 1" />

@@ -33,6 +33,8 @@ namespace GT4SaveEditor
 
         private void InitGarageListing()
         {
+            GarageCars.Clear();
+
             UpdateCurrentCarStatus();
 
             int garageCarCount = Save.GameData.Profile.Garage.GetCarCount();
@@ -168,7 +170,7 @@ namespace GT4SaveEditor
         private CarEntityViewModel CreateGarageCarModel(int index, GarageScratchUnit car)
         {
             string label = _gt4Database.GetCarLabelByCode(car.CarCode.Code);
-            uint color = _gt4Database.GetVariationRGBOfCarLabel(label, (int)car.VariationIndex);
+            uint color = _gt4Database.GetVariationRGBOfCarLabel(label, (int)car.VariationIndex) ?? 0;
             Color col = Color.FromRgb((byte)(color), (byte)(color >> 8), (byte)(color >> 16));
 
             var model = new CarEntityViewModel()
