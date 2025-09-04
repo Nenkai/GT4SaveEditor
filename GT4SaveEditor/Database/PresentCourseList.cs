@@ -19,7 +19,7 @@ namespace GT4SaveEditor.Database
             var lines = File.ReadAllLines(fileName);
             for (int i = 0; i < lines.Length; i++)
             {
-                string? line = lines[i];
+                string line = lines[i];
                 if (string.IsNullOrEmpty(line) || line.StartsWith("//"))
                     continue;
 

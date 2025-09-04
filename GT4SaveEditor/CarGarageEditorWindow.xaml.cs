@@ -64,7 +64,7 @@ namespace GT4SaveEditor
             Process.Start(new ProcessStartInfo { FileName = e.Uri.ToString(), UseShellExecute = true });
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 

@@ -8,13 +8,23 @@
         mc:Ignorable="d"
         Title="GT4 Save Editor" Height="613" Width="900"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        AllowDrop="True"
+        Drop="Window_Drop">
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="SaveAs"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="Open_CommandExecuted"/>
+        <CommandBinding Command="SaveAs" Executed="SaveAs_CommandExecuted"/>
+    </Window.CommandBindings>
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="20">
                 <MenuItem Header="File">
-                    <MenuItem Header="_Load" Name="MenuItem_Load" Click="MenuItem_Load_Click"/>
-                    <MenuItem Header="_Save" Name="MenuItem_Save" IsEnabled="False" Click="MenuItem_Save_Click"/>
+                    <MenuItem Header="_Load" Name="MenuItem_Load" Command="Open" InputGestureText="Ctrl+O"/>
+                    <MenuItem Header="_Save" Name="MenuItem_Save" IsEnabled="False" Command="SaveAs" InputGestureText="Ctrl+S"/>
                     <MenuItem Header="_Save To Another Region" Name="MenuItem_SaveToAnotherRegion" IsEnabled="False" Click="MenuItem_SaveToAnotherRegion_Click"/>
                     <Separator/>
                     <MenuItem Header="_Encrypt Save" Name="MenuItem_Encrypt" Click="MenuItem_Encrypt_Click"/>

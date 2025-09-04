@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>0.5.1.0</AssemblyVersion>
-    <FileVersion>0.5.1.0</FileVersion>
+    <AssemblyVersion>0.6.2.0</AssemblyVersion>
+    <FileVersion>0.6.2.0</FileVersion>
+	<Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,12 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PDTools\PDTools.SaveFile\PDTools.SaveFile.csproj" />
-    <ProjectReference Include="..\PDTools\PDTools.Structures\PDTools.Structures.csproj" />
   </ItemGroup>
-
 
   <ItemGroup>
     <None Update="Resources\Databases\GT4_EU2560.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Databases\GT4_JP2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Databases\GT4_KR2560.sqlite">
@@ -33,6 +35,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Databases\GT4_PREMIUM_US2560.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Databases\GT4_US2560.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\EventList.txt">

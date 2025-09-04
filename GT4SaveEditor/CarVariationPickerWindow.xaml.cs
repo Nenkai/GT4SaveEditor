@@ -36,8 +36,6 @@ namespace GT4SaveEditor
 
         public int SelectedVariation { get; set; } = -1;
 
-        private GT4Database _db;
-
         private List<(string Name, int RGB)> _colors;
 
 

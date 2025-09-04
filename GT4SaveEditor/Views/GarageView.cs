@@ -68,7 +68,7 @@ namespace GT4SaveEditor
 
             for (int i = lv_GarageCars.SelectedItems.Count - 1; i >= 0; i--)
             {
-                object? item = lv_GarageCars.SelectedItems[i];
+                object item = lv_GarageCars.SelectedItems[i];
                 var selected = item as CarEntityViewModel;
                 if (selected.Index == Save.GameData.Profile.Garage.RidingCarIndex)
                     Save.GameData.Profile.Garage.RidingCarIndex = -1;
