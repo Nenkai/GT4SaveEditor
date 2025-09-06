@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.IO;
 
 namespace GT4SaveEditor.Database
 {
@@ -13,6 +14,30 @@ namespace GT4SaveEditor.Database
         public string FileName { get; set; }
 
         public bool Connected { get; set; }
+
+        private Dictionary<int, CachedCar> _cachedCarsByCode = [];
+        private Dictionary<string, CachedCar> _cachedCarsByLabel = [];
+        private Dictionary<(int, int), uint> _cachedVariationColors = [];
+
+        private Dictionary<int, CachedRace> _cachedRacesByCode = [];
+        private Dictionary<string, CachedRace> _cachedRacesByLabel = [];
+
+        private Dictionary<int, string> _cachedCourseLabels = [];
+
+        public class CachedCar
+        {
+            public string Label { get; set; }
+            public string Name { get; set; }
+            public int VariationID { get; set; }
+        }
+
+        public class CachedRace
+        {
+            public int RowId { get; set; }
+            public int CourseId { get; set; }
+            public string RaceMode { get; set; }
+        }
+
 
         public GT4Database()
         {
@@ -31,6 +56,7 @@ namespace GT4SaveEditor.Database
             try
             {
                 _sConn.Open();
+                CacheDbCarInfo();
                 Connected = true;
             }
             catch (Exception e)
@@ -40,6 +66,107 @@ namespace GT4SaveEditor.Database
             }
 
             return true;
+        }
+
+        private void CacheDbCarInfo()
+        {
+            if (_cachedCarsByLabel.Count == 0)
+            {
+                var res = ExecuteQuery($"SELECT RowId, Label FROM GENERIC_CAR");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        int dbCode = res.GetInt32(0);
+                        string label = res.GetString(1);
+                        var cachedCar = new CachedCar() { Label = label };
+                        _cachedCarsByCode.TryAdd(dbCode, cachedCar);
+                        _cachedCarsByLabel.TryAdd(label, cachedCar);
+
+                    }
+                }
+
+                res = ExecuteQuery($"SELECT RowId, Name FROM CAR_NAME_american");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        int dbCode = res.GetInt32(0);
+                        string carName = res.GetString(1);
+                        _cachedCarsByCode[dbCode].Name = carName;
+                    }
+                }
+
+                res = ExecuteQuery($"SELECT Label, VariationID FROM CAR_VARIATION_american");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        string label = res.GetString(0);
+                        string variationIdStr = res.GetString(1);
+                        string[] spl = variationIdStr.Split(':');
+                        if (spl.Length != 2 || !int.TryParse(spl[1], out int variationRowId))
+                            continue;
+
+                        _cachedCarsByLabel[label].VariationID = variationRowId;
+                    }
+                }
+            }
+
+            if (_cachedVariationColors.Count == 0)
+            {
+                var res = ExecuteQuery($"SELECT RowId, VarOrder, ColorChip0 FROM VARIATIONamerican");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        int variationId = res.GetInt32(0);
+                        int varOrder = res.GetInt32(1);
+                        uint color = (uint)res.GetInt32(2);
+                        _cachedVariationColors.Add((variationId, varOrder), color);
+                    }
+                }
+            }
+
+            if (_cachedRacesByLabel.Count == 0)
+            {
+                var res = ExecuteQuery($"SELECT Label, _rowid_, CourseID, RaceMode FROM RACE");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        string label = res.GetString(0);
+                        int rowId = res.GetInt32(1);
+                        string courseIdStr = res.GetString(2);
+                        int courseId = int.Parse(courseIdStr.Split(':')[1]);
+                        string raceMode = res.GetString(3);
+
+                        var cachedRace = new CachedRace()
+                        {
+                            RowId = rowId,
+                            CourseId = courseId,
+                            RaceMode = raceMode
+                        };
+
+                        _cachedRacesByCode.TryAdd(rowId, cachedRace);
+                        _cachedRacesByLabel.Add(label, cachedRace);
+                    }
+                }
+            }
+
+            if (_cachedCourseLabels.Count == 0)
+            {
+                var res = ExecuteQuery($"SELECT RowId, Label FROM COURSE");
+                if (res.HasRows)
+                {
+                    while (res.Read())
+                    {
+                        int rowId = res.GetInt32(0);
+                        string label = res.GetString(1);
+                        _cachedCourseLabels.Add(rowId, label);
+                    }
+                }
+            }
         }
 
         public string GetCarNameByLabel(string label)
@@ -52,19 +179,16 @@ namespace GT4SaveEditor.Database
 
         public (int RowID, int CourseID, string RaceMode) GetRaceRowIndexByLabel(string label)
         {
-            var res = ExecuteQuery($"SELECT _rowid_, CourseID, RaceMode FROM RACE WHERE Label = \"{label}\"");
-            res.Read();
-
-            return (res.GetInt32(0) - 1, res.GetInt32(1), res.GetString(2));
+            if (_cachedRacesByLabel.TryGetValue(label, out CachedRace cachedRace))
+                return (cachedRace.RowId, cachedRace.CourseId, cachedRace.RaceMode);
+            else
+                return (-1, -1, "Unknown");
         }
 
         public string GetCourseLabelByID(int id)
         {
-            var res = ExecuteQuery($"SELECT Label FROM COURSE WHERE RowId = \"{id}\"");
-            res.Read();
-
-            if (res.HasRows)
-                return res.GetString(0);
+            if (_cachedCourseLabels.TryGetValue(id, out string label))
+                return label;
             else
                 return $"Unknown course {id}";
         }
@@ -75,27 +199,20 @@ namespace GT4SaveEditor.Database
             if (variationRowId is null)
                 return null;
 
-            var res = ExecuteQuery($"SELECT RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" AND VarOrder = \"{varOrder + 1}\"");
-            res.Read();
+            if (_cachedVariationColors.TryGetValue((variationRowId.Value, varOrder + 1), out uint color))
+                return color;
 
-            if (res.HasRows)
-                return (uint)res.GetInt32(0);
-            else
-                return null;
+            return null;
         }
 
         public int? GetVariationIdFromCarLabel(string label)
         {
-            var res = ExecuteQuery($"SELECT VariationID FROM CAR_VARIATION_american WHERE Label = \"{label}\"");
-            res.Read();
+            CacheDbCarInfo();
 
-            if (res.HasRows)
-            {
-                int variationRowId = res.GetInt32(0);
-                return variationRowId;
-            }
-            else
-                return null;
+            if (_cachedCarsByLabel.TryGetValue(label, out CachedCar cachedCar))
+                return cachedCar.VariationID;
+
+            return null;
         }
 
         public List<string> GetAllRaceLabels()
@@ -108,24 +225,19 @@ namespace GT4SaveEditor.Database
             return strs;
         }
 
+
         public string GetCarNameByCode(int code)
         {
-            var res = ExecuteQuery($"SELECT Name FROM CAR_NAME_american WHERE RowId = \"{code}\"");
-            res.Read();
-
-            if (res.HasRows)
-                return res.GetString(0);
+            if (_cachedCarsByCode.TryGetValue(code, out CachedCar cachedCar))
+                return cachedCar.Name;
             else
                 return $"Unknown car {code}";
         }
 
         public string GetCarLabelByCode(int code)
         {
-            var res = ExecuteQuery($"SELECT Label FROM GENERIC_CAR WHERE RowId = \"{code}\"");
-            res.Read();
-
-            if (res.HasRows)
-                return res.GetString(0);
+            if (_cachedCarsByCode.TryGetValue(code, out CachedCar cachedCar))
+                return cachedCar.Label;
             else
                 return $"Unknown car {code}";
         }
@@ -160,7 +272,7 @@ namespace GT4SaveEditor.Database
             if (variationRowId is null)
                 return strs;
 
-            var res = ExecuteQuery($"SELECT Name, RGB FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" ORDER BY VarOrder");
+            var res = ExecuteQuery($"SELECT Name, ColorChip0 FROM VARIATIONamerican WHERE RowId = \"{variationRowId}\" ORDER BY VarOrder");
 
             while (res.Read())
                 strs.Add((res.GetString(0), res.GetInt32(1)));
